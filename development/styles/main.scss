@@ -1,0 +1,16 @@
+body {
+	display: flex;
+	flex-direction: row;
+	side-nav {
+		width: 14rem;
+		height: 100vh;
+		background-color: hsla(180, 6%, 97%, 1);
+		position: fixed;
+	}
+	ui-view {
+		width: 100%;
+		height: auto;
+		margin-left: 14rem;
+		padding: 3rem;
+	}
+}
