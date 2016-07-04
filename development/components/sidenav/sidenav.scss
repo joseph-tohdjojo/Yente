@@ -12,7 +12,7 @@ side-nav {
 		height: 8rem;
 		border-bottom: 1px solid hsla(210, 3%, 75%, 1);
 		background-color: hsla(180, 6%, 97%, 1);
-		font-family: $teko-stack;
+		font-family: $logo-stack;
 		font-size: 4rem;
 		cursor: pointer;
 		h1 {
@@ -20,14 +20,20 @@ side-nav {
 		}
 	}
 	.logo:hover {
-		background-color: #E5E5E5;
+		background-image: url('http://payload269.cargocollective.com/1/4/140568/7695371/tumblr_n38dp87jkd1rqf91so1_500.gif');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		h1 {
+			color: #fff;
+		}
 	}
 	.nav-btn {
 		height: 3rem;
 		background-color: hsla(180, 6%, 97%, 1);
 		padding: 0 1rem;
-		font-family: $pragati-stack;
-		font-size: 1.2rem;
+		font-family: $helvetica-stack;
+		font-size: 0.9rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -48,6 +54,74 @@ side-nav {
 	}
 	.nav-top {
 		width: 100%;
+		.project-info {
+			padding: 1rem 1rem 3rem;
+			margin: 0 auto;
+			background-color: #fff;
+			display: none;
+			h2 {
+				font-family: $serif-stack;
+				font-weight: 700;
+				font-size: 2rem;
+				margin-bottom: 1rem;
+				line-height: 2.2rem;
+				text-rendering: geometricPrecision;
+				letter-spacing: 0.05rem;
+			}
+			p {
+				font-family: $helvetica-stack;
+				font-size: 0.8rem;
+				line-height: 1rem;
+				margin-bottom: 3rem;
+			}
+			.visit {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+				p {
+					padding-bottom: 0.5rem;
+					font-family: $serif-stack;
+					font-weight: 400;
+					font-size: 1.5rem;
+					line-height: 1.5rem;
+					text-align: center;
+					color: hsla(210, 3%, 75%, 1);
+					margin-bottom: 0.5rem;
+					text-rendering: geometricPrecision;
+					letter-spacing: 0.02rem;
+					border-bottom: 1px solid hsla(210, 3%, 75%, 1);
+				}
+			}
+			.visit:hover {
+				p {
+					color: #000;
+					border-bottom: 1px solid hsla(0, 0%, 0%, 1);
+				}
+			}
+		}
+		.search {
+			height: 3rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: transparent;
+			input {
+				width: 100%;
+				height: 100%;
+				padding: 0 1rem;
+				border: none;
+				background-color: transparent;
+				font-family: $helvetica-stack;
+				font-weight: 300;
+				font-size: 0.9rem;
+				outline: none;
+			}
+			input:focus {
+				background-color: #fff;
+			}
+		}
 		.border-bottom {
 			border-bottom: 1px solid hsla(210, 3%, 75%, 1);
 		}
@@ -56,24 +130,79 @@ side-nav {
 		width: 100%;
 		position: absolute;
 		bottom: 0;
-		.search {
-			height: 3rem;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background-color: #fff;
+		box-shadow: -5px 0px 16px 0px rgba(0,0,0,0.2);
+		.login-form {
+			width: 100%;
+			height: 15rem;
+			display: none;
+			background-color: #E5E5E5;
 			input {
-				width: 90%;
-				height: 90%;
+				height: 3rem;
+				padding: 0 1rem;
 				border: none;
-				background-color: transparent;
-				font-family: $pragati-stack;
-				font-size: 1.2rem;
+				border-top: 1px solid hsla(210, 3%, 75%, 1);
+				background-color: #fff;
+				font-family: $helvetica-stack;
+				font-weight: 300;
+				font-size: 0.9rem;
 				outline: none;
+			}
+			.input-text {
+				width: 85.5%;
+			}
+			.input-button {
+				width: 100%;
+				cursor: pointer;
+				background-color: hsla(210, 3%, 75%, 1);
+				color: hsla(180, 6%, 97%, 1);
+			}
+			.input-button:hover {
+				background-color: hsla(210, 3%, 65%, 1);
+			}
+			.input-button:active {
+				background-color: hsla(210, 3%, 85%, 1);
 			}
 		}
 		.border-top {
 			border-top: 1px solid hsla(210, 3%, 75%, 1);
 		}
+	}
+
+	.active {
+		background-color: #fff;
+		> .dot {
+			background-color: green;
+		}
+	}
+
+	@-webkit-keyframes slideOutUp {
+	  from {
+	    -webkit-transform: translate3d(0, 0, 0);
+	    transform: translate3d(0, 0, 0);
+	  }
+
+	  to {
+	    visibility: hidden;
+	    -webkit-transform: translate3d(0, -100%, 0);
+	    transform: translate3d(0, -100%, 0);
+	  }
+	}
+
+	@keyframes slideOutUp {
+	  from {
+	    -webkit-transform: translate3d(0, 0, 0);
+	    transform: translate3d(0, 0, 0);
+	  }
+
+	  to {
+	    visibility: hidden;
+	    -webkit-transform: translate3d(0, -100%, 0);
+	    transform: translate3d(0, -100%, 0);
+	  }
+	}
+
+	.slideOutUp {
+	  -webkit-animation-name: slideOutUp;
+	  animation-name: slideOutUp;
 	}
 }

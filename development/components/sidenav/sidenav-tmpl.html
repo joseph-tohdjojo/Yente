@@ -2,22 +2,37 @@
 	<h1>YENTE</h1>
 </div>
 <div class="nav-top">
-	<div class="nav-btn border-bottom" ui-sref="home">
+	<div class="nav-btn border-bottom" ui-sref="home" ui-sref-active="active">
 		<p>Yente Gallery</p><i class="dot"></i>
 	</div>
-	<div class="nav-btn border-bottom">
+	<div class="project-info border-bottom">
+		<h2>Jawbone</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		<div class="visit">
+			<p>View Project</p>
+		</div>
+	</div>
+	<div class="nav-btn border-bottom" ui-sref="talents" ui-sref-active="active">
 		<p>Talent Profiles</p><i class="dot"></i>
+	</div>
+	<div class="search border-bottom">
+		<input type="search" placeholder="Search">
 	</div>
 </div>
 
 <div class="nav-bottom">
-	<div class="search">
-		<input type="text" placeholder="Search">
+	<div class="nav-btn border-top" ng-if="loggedIn">
+		<p>@mrhamburger</p><i class="dot"></i>
 	</div>
-	<div class="nav-btn border-top">
+	<div class="nav-btn border-top login">
 		<p>Login</p><i class="dot"></i>
 	</div>
-	<div class="nav-btn border-top">
+	<form class="login-form" action="">
+		<input class="input-text" type="text" placeholder="username">
+		<input class="input-text" type="password" placeholder="password">
+		<input class="input-button" type="button" value="Login">
+	</form>
+	<div class="nav-btn border-top" ui-sref="apply" ui-sref-active="active">
 		<p>Apply for an account</p><i class="dot"></i>
 	</div>
 </div>

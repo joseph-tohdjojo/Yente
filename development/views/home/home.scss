@@ -1,7 +1,17 @@
 .about {
 	width: 40%;
 	margin: 0 auto 3rem;
-	font-family: $pragati-stack;
-	font-size: 1.2rem;
-	text-align: center;
+	p {
+		font-family: $mono-stack;
+		font-size: 0.9rem;
+		line-height: 1.2rem;
+		text-align: center;
+		letter-spacing: 0.1rem;
+		b {
+			font-weight: 600;
+		}
+		i {
+			background-color: yellow;
+		}
+	}
 }

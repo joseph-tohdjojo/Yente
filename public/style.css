@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Pragati+Narrow|Teko';
+@import 'https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,700|Source+Code+Pro:300,400,600|Teko';
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -54,6 +54,9 @@ button:focus {
 a {
   text-decoration: none; }
 
+img {
+  margin-bottom: -0.3rem; }
+
 body {
   display: -ms-flexbox;
   display: flex;
@@ -69,20 +72,64 @@ body {
     height: auto;
     margin-left: 14rem;
     padding: 3rem; }
+  body .line {
+    width: 100%;
+    height: 1px;
+    background-color: #e4e7e7;
+    margin: 3rem 0; }
 
 .grid {
+  -moz-column-width: 300px;
+       column-width: 300px;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  width: 90%;
   margin: 0 auto;
-  position: relative;
-  width: 80%; }
-
-.gridItem {
-  background: #e0e0e0;
-  border-radius: 3px;
-  box-sizing: border-box;
-  color: #aaa;
-  font-size: 13px;
-  padding: 5px;
-  position: absolute; }
+  max-width: 1100px; }
+  .grid .project {
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 30px;
+    page-break-inside: avoid;
+         break-inside: avoid;
+    border-radius: 0.4rem 0.4rem 0 0; }
+    .grid .project .project-browser .browser-top {
+      width: 100%;
+      height: 1.2rem;
+      background: #e0e0e0;
+      border-radius: 0.4rem 0.4rem 0 0; }
+      .grid .project .project-browser .browser-top .browser-btns {
+        width: 3rem;
+        height: 100%;
+        margin-left: 0.5rem;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+        -ms-flex-align: center;
+            align-items: center; }
+        .grid .project .project-browser .browser-top .browser-btns .btn {
+          width: 0.6rem;
+          height: 0.6rem;
+          border-radius: 1rem;
+          background-color: #AAA; }
+        .grid .project .project-browser .browser-top .browser-btns .red {
+          background-color: #e1666a; }
+        .grid .project .project-browser .browser-top .browser-btns .yellow {
+          background-color: #eaa861; }
+        .grid .project .project-browser .browser-top .browser-btns .green {
+          background-color: #5aa079; }
+    .grid .project .project-browser img {
+      width: 100%;
+      background-color: #333; }
+    .grid .project .project-browser .browser-bottom {
+      width: 100%;
+      height: 1.2rem;
+      background: #e0e0e0;
+      border-radius: 0 0 0.4rem 0.4rem; }
 
 side-nav {
   width: 14rem;
@@ -106,13 +153,18 @@ side-nav {
     side-nav .logo h1 {
       margin: 0.5rem 0 0 1rem; }
   side-nav .logo:hover {
-    background-color: #E5E5E5; }
+    background-image: url("http://payload269.cargocollective.com/1/4/140568/7695371/tumblr_n38dp87jkd1rqf91so1_500.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; }
+    side-nav .logo:hover h1 {
+      color: #fff; }
   side-nav .nav-btn {
     height: 3rem;
     background-color: #f7f8f8;
     padding: 0 1rem;
-    font-family: "Pragati Narrow", Helvetica, sans-serif;
-    font-size: 1.2rem;
+    font-family: Helvetica, sans-serif;
+    font-size: 0.9rem;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
@@ -132,13 +184,50 @@ side-nav {
       background-color: black; }
   side-nav .nav-top {
     width: 100%; }
-    side-nav .nav-top .border-bottom {
-      border-bottom: 1px solid #bdbfc1; }
-  side-nav .nav-bottom {
-    width: 100%;
-    position: absolute;
-    bottom: 0; }
-    side-nav .nav-bottom .search {
+    side-nav .nav-top .project-info {
+      padding: 1rem 1rem 3rem;
+      margin: 0 auto;
+      background-color: #fff;
+      display: none; }
+      side-nav .nav-top .project-info h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        line-height: 2.2rem;
+        text-rendering: geometricPrecision;
+        letter-spacing: 0.05rem; }
+      side-nav .nav-top .project-info p {
+        font-family: Helvetica, sans-serif;
+        font-size: 0.8rem;
+        line-height: 1rem;
+        margin-bottom: 3rem; }
+      side-nav .nav-top .project-info .visit {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+            flex-direction: column;
+        -ms-flex-pack: center;
+            justify-content: center;
+        -ms-flex-align: center;
+            align-items: center;
+        cursor: pointer; }
+        side-nav .nav-top .project-info .visit p {
+          padding-bottom: 0.5rem;
+          font-family: "Cormorant Garamond", serif;
+          font-weight: 400;
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+          text-align: center;
+          color: #bdbfc1;
+          margin-bottom: 0.5rem;
+          text-rendering: geometricPrecision;
+          letter-spacing: 0.02rem;
+          border-bottom: 1px solid #bdbfc1; }
+      side-nav .nav-top .project-info .visit:hover p {
+        color: #000;
+        border-bottom: 1px solid black; }
+    side-nav .nav-top .search {
       height: 3rem;
       display: -ms-flexbox;
       display: flex;
@@ -146,23 +235,346 @@ side-nav {
           justify-content: center;
       -ms-flex-align: center;
           align-items: center;
-      background-color: #fff; }
-      side-nav .nav-bottom .search input {
-        width: 90%;
-        height: 90%;
+      background-color: transparent; }
+      side-nav .nav-top .search input {
+        width: 100%;
+        height: 100%;
+        padding: 0 1rem;
         border: none;
         background-color: transparent;
-        font-family: "Pragati Narrow", Helvetica, sans-serif;
-        font-size: 1.2rem;
+        font-family: Helvetica, sans-serif;
+        font-weight: 300;
+        font-size: 0.9rem;
         outline: none; }
+      side-nav .nav-top .search input:focus {
+        background-color: #fff; }
+    side-nav .nav-top .border-bottom {
+      border-bottom: 1px solid #bdbfc1; }
+  side-nav .nav-bottom {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    box-shadow: -5px 0px 16px 0px rgba(0, 0, 0, 0.2); }
+    side-nav .nav-bottom .login-form {
+      width: 100%;
+      height: 15rem;
+      display: none;
+      background-color: #E5E5E5; }
+      side-nav .nav-bottom .login-form input {
+        height: 3rem;
+        padding: 0 1rem;
+        border: none;
+        border-top: 1px solid #bdbfc1;
+        background-color: #fff;
+        font-family: Helvetica, sans-serif;
+        font-weight: 300;
+        font-size: 0.9rem;
+        outline: none; }
+      side-nav .nav-bottom .login-form .input-text {
+        width: 85.5%; }
+      side-nav .nav-bottom .login-form .input-button {
+        width: 100%;
+        cursor: pointer;
+        background-color: #bdbfc1;
+        color: #f7f8f8; }
+      side-nav .nav-bottom .login-form .input-button:hover {
+        background-color: #a3a6a8; }
+      side-nav .nav-bottom .login-form .input-button:active {
+        background-color: #d8d9da; }
     side-nav .nav-bottom .border-top {
       border-top: 1px solid #bdbfc1; }
+  side-nav .active {
+    background-color: #fff; }
+    side-nav .active > .dot {
+      background-color: green; }
+
+@keyframes slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0); }
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -100%, 0); } }
+  side-nav .slideOutUp {
+    animation-name: slideOutUp; }
+
+body ui-view .title {
+  width: 80%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-bottom: 3rem; }
+  body ui-view .title h2 {
+    text-align: center;
+    font-family: "Source Code Pro", monospace;
+    font-weight: 600;
+    font-size: 3rem; }
+
+body ui-view .application {
+  width: 80%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between; }
+  body ui-view .application .explanation {
+    width: 30%;
+    text-align: justify;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.2rem; }
+  body ui-view .application form {
+    width: 65%;
+    font-family: Helvetica, sans-serif;
+    font-size: 0.8rem; }
+    body ui-view .application form > p {
+      margin-bottom: 2rem;
+      color: #e1666a; }
+    body ui-view .application form div .input-wrapper {
+      margin-bottom: 1rem;
+      margin-right: 1rem; }
+      body ui-view .application form div .input-wrapper p {
+        margin-bottom: 0.3rem; }
+      body ui-view .application form div .input-wrapper input {
+        height: 1.5rem;
+        padding: 0 0.2rem;
+        border-radius: 0.2rem;
+        border: 1px solid #bdbfc1; }
+    body ui-view .application form .username .input-wrapper input {
+      width: 100%; }
+    body ui-view .application form .password {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: row;
+          flex-direction: row;
+      margin-bottom: 3rem; }
+      body ui-view .application form .password .input-wrapper {
+        width: 50%; }
+        body ui-view .application form .password .input-wrapper input {
+          width: 100%; }
+    body ui-view .application form .name {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+      body ui-view .application form .name .input-wrapper {
+        width: 50%; }
+        body ui-view .application form .name .input-wrapper input {
+          width: 100%; }
+    body ui-view .application form .email .input-wrapper input {
+      width: 100%; }
+    body ui-view .application form .links {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+      body ui-view .application form .links p {
+        margin-bottom: 0.2rem; }
+      body ui-view .application form .links .container {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: row;
+            flex-direction: row;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+        body ui-view .application form .links .container .input-wrapper {
+          width: 50%;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-direction: column;
+              flex-direction: column; }
+          body ui-view .application form .links .container .input-wrapper input {
+            width: 100%;
+            margin-bottom: 0.5rem; }
+    body ui-view .application form .bio .input-wrapper textarea {
+      width: 100%;
+      resize: vertical;
+      border-radius: 0.2rem;
+      border: 1px solid #bdbfc1; }
+    body ui-view .application form .submit {
+      width: 8rem;
+      height: 2rem;
+      background-color: #bdbfc1;
+      border: none;
+      outline: none;
+      color: #fff; }
+    body ui-view .application form .submit:hover {
+      background-color: #a3a6a8; }
+    body ui-view .application form .submit:active {
+      background-color: #d8d9da; }
 
 .about {
   width: 40%;
-  margin: 0 auto 3rem;
-  font-family: "Pragati Narrow", Helvetica, sans-serif;
-  font-size: 1.2rem;
-  text-align: center; }
+  margin: 0 auto 3rem; }
+  .about p {
+    font-family: "Source Code Pro", monospace;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+    text-align: center;
+    letter-spacing: 0.1rem; }
+    .about p b {
+      font-weight: 600; }
+    .about p i {
+      background-color: yellow; }
+
+body ui-view > .project-browser {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 0.4rem 0.4rem;
+  box-shadow: 0.1rem 0.1rem 16px 0px rgba(0, 0, 0, 0.5); }
+  body ui-view > .project-browser .browser-top {
+    width: 100%;
+    height: 1.2rem;
+    background: #e0e0e0;
+    border-radius: 0.4rem 0.4rem 0 0; }
+    body ui-view > .project-browser .browser-top .browser-btns {
+      width: 3rem;
+      height: 100%;
+      margin-left: 0.5rem;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+      -ms-flex-align: center;
+          align-items: center; }
+      body ui-view > .project-browser .browser-top .browser-btns .btn {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background-color: #AAA; }
+      body ui-view > .project-browser .browser-top .browser-btns .red {
+        background-color: #e1666a; }
+      body ui-view > .project-browser .browser-top .browser-btns .yellow {
+        background-color: #eaa861; }
+      body ui-view > .project-browser .browser-top .browser-btns .green {
+        background-color: #5aa079; }
+  body ui-view > .project-browser img {
+    width: 100%;
+    background-color: #333; }
+  body ui-view > .project-browser .browser-bottom {
+    width: 100%;
+    height: 1.2rem;
+    background: #e0e0e0;
+    border-radius: 0 0 0.4rem 0.4rem; }
+
+body ui-view .user {
+  width: 100%;
+  height: 15rem;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between; }
+  body ui-view .user .user-info {
+    width: 28%;
+    margin-right: 2%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: start;
+        justify-content: flex-start; }
+    body ui-view .user .user-info .avatar {
+      width: 25%;
+      margin-right: 5%;
+      border-radius: 50%; }
+      body ui-view .user .user-info .avatar img {
+        width: 100%;
+        border-radius: 50%; }
+    body ui-view .user .user-info .info {
+      width: 70%;
+      height: 100%;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+      body ui-view .user .user-info .info h3 {
+        font-family: "Teko", Helvetica, sans-serif;
+        letter-spacing: 0.08rem;
+        font-weight: lighter;
+        font-size: 1.5rem;
+        line-height: 1.8rem;
+        color: #788787; }
+      body ui-view .user .user-info .info h4 {
+        font-family: Helvetica, sans-serif;
+        font-weight: lighter;
+        font-size: 1rem;
+        color: #788787;
+        margin-bottom: 1rem; }
+      body ui-view .user .user-info .info p {
+        font-family: Helvetica, sans-serif;
+        font-weight: lighter;
+        font-size: 0.8rem;
+        line-height: 1rem;
+        color: #939f9f;
+        margin-bottom: 0.5rem; }
+      body ui-view .user .user-info .info .links {
+        width: 100%;
+        height: 2rem;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: row;
+            flex-direction: row; }
+        body ui-view .user .user-info .info .links .icon {
+          width: 2rem;
+          height: 2rem;
+          margin-right: 0.5rem;
+          background-color: #c9cfcf;
+          border-radius: 15%; }
+  body ui-view .user .projects::-webkit-scrollbar {
+    display: none; }
+  body ui-view .user .projects {
+    width: 70%;
+    height: 100%;
+    background-color: #333;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-pack: start;
+        justify-content: flex-start;
+    -ms-flex-align: center;
+        align-items: center;
+    overflow-x: scroll;
+    overflow-y: hidden; }
+    body ui-view .user .projects .project-browser {
+      margin-right: 1rem;
+      border-radius: 0.4rem 0.4rem;
+      box-shadow: 0.1rem 0.1rem 16px 0px rgba(0, 0, 0, 0.5); }
+      body ui-view .user .projects .project-browser .browser-top {
+        width: 100%;
+        height: 1.2rem;
+        background: #e0e0e0;
+        border-radius: 0.4rem 0.4rem 0 0; }
+        body ui-view .user .projects .project-browser .browser-top .browser-btns {
+          width: 3rem;
+          height: 100%;
+          margin-left: 0.5rem;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+          -ms-flex-align: center;
+              align-items: center; }
+          body ui-view .user .projects .project-browser .browser-top .browser-btns .btn {
+            width: 0.6rem;
+            height: 0.6rem;
+            border-radius: 50%;
+            background-color: #AAA; }
+          body ui-view .user .projects .project-browser .browser-top .browser-btns .red {
+            background-color: #e1666a; }
+          body ui-view .user .projects .project-browser .browser-top .browser-btns .yellow {
+            background-color: #eaa861; }
+          body ui-view .user .projects .project-browser .browser-top .browser-btns .green {
+            background-color: #5aa079; }
+      body ui-view .user .projects .project-browser img {
+        width: 100%;
+        background-color: #333; }
+      body ui-view .user .projects .project-browser .browser-bottom {
+        width: 100%;
+        height: 1.2rem;
+        background: #e0e0e0;
+        border-radius: 0 0 0.4rem 0.4rem; }
 
 /*# sourceMappingURL=style.css.map */

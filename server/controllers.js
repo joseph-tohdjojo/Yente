@@ -31,15 +31,7 @@ module.exports = {
 			});
 		},
 		update: function(req, res) {
-			var response = {};
-			User.findById(req.params.id, function(e, r) {
-				if (e) {
-					res.status(500).json(e);
-				} else {
-					response = r;
-				}
-			});
-			User.findByIdAndUpdate(req.params.id, {$set: req.body}, {upsert: true}, function(e, r) {
+			User.findByIdAndUpdate(req.params.id, req.body, function(e, r) {
 				if (e) {
 					res.status(500).json(e);
 				} else {

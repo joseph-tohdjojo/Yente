@@ -1,0 +1,135 @@
+body {
+	ui-view {
+		.title {
+			width: 80%;
+			margin: 0 auto;
+			display: flex;
+			justify-content: center;
+			margin-bottom: 3rem;
+			h2 {
+				text-align: center;
+				font-family: $mono-stack;
+				font-weight: 600;
+				font-size: 3rem;
+			}
+		}
+		.application {
+			width: 80%;
+			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
+			.explanation {
+				width: 30%;
+				text-align: justify;
+				font-family: $helvetica-stack;
+				font-weight: 300;
+				font-size: 1rem;
+				line-height: 1.2rem;
+			}
+			form {
+				width: 65%;
+				font-family: $helvetica-stack;
+				font-size: 0.8rem;
+				> p {
+					margin-bottom: 2rem;
+					color: hsla(358, 67%, 64%, 1);
+				}
+				div {
+					.input-wrapper {
+						margin-bottom: 1rem;
+						margin-right: 1rem;
+						p {
+							margin-bottom: 0.3rem;
+						}
+						input {
+							height: 1.5rem;
+							padding: 0 0.2rem;
+							border-radius: 0.2rem;
+							border: 1px solid hsla(210, 3%, 75%, 1);
+						}
+					}
+				}
+				.username {
+					.input-wrapper {
+						input {
+							width: 100%;
+						}
+					}
+				}
+				.password {
+					display: flex;
+					flex-direction: row;
+					margin-bottom: 3rem;
+					.input-wrapper {
+						width: 50%;
+						input {
+							width: 100%;
+						}
+					}
+				}
+				.name {
+					display: flex;
+					flex-direction: row;
+					.input-wrapper {
+						width: 50%;
+						input {
+							width: 100%;
+						}
+					}
+				}
+				.email {
+					.input-wrapper {
+						input {
+							width: 100%;
+						}
+					}
+				}
+				.links {
+					display: flex;
+					flex-direction: column;
+					p {
+						margin-bottom: 0.2rem;
+					}
+					.container {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						.input-wrapper {
+							width: 50%;
+							display: flex;
+							flex-direction: column;
+							input {
+								width: 100%;
+								margin-bottom: 0.5rem;
+							}
+						}
+					}
+				}
+				.bio {
+					.input-wrapper {
+						textarea {
+							width: 100%;
+							resize: vertical;
+							border-radius: 0.2rem;
+							border: 1px solid hsla(210, 3%, 75%, 1);
+						}
+					}
+				}
+				.submit {
+					width: 8rem;
+					height: 2rem;
+					background-color: hsla(210, 3%, 75%, 1);
+					border: none;
+					outline: none;
+					color: #fff;
+				}
+				.submit:hover {
+					background-color: hsla(210, 3%, 65%, 1);
+				}
+				.submit:active {
+					background-color: hsla(210, 3%, 85%, 1);
+				}
+			}
+		}
+	}
+}
