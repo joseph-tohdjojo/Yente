@@ -21,18 +21,27 @@
 </div>
 
 <div class="nav-bottom">
-	<div class="nav-btn border-top" ng-if="loggedIn">
-		<p>@mrhamburger</p><i class="dot"></i>
+	<div class="nav-btn border-top username" ng-show="sideNavCtrl.user">
+		<p>@{{sideNavCtrl.user.username}}</p><i class="dot"></i>
 	</div>
-	<div class="nav-btn border-top login">
+	<div class="user-menu" action="" ng-show="sideNavCtrl.user">
+		<div class="nav-btn border-top" ui-sref="settings" ui-sref-active="active">
+			<p>Settings</p><div class="icon"><i data-icon="b"></i></div>
+		</div>
+		<div class="nav-btn border-top" ui-sref="addproject" ui-sref-active="active">
+			<p>Add a project</p><div class="icon"><i data-icon="d"></i></div>
+		</div>
+		<input class="input-button" type="button" value="Logout" ng-click="">
+	</div>
+	<div class="nav-btn border-top login" ng-show="!sideNavCtrl.user">
 		<p>Login</p><i class="dot"></i>
 	</div>
-	<form class="login-form" action="">
-		<input class="input-text" type="text" placeholder="username">
-		<input class="input-text" type="password" placeholder="password">
-		<input class="input-button" type="button" value="Login">
+	<form class="login-form" action="" ng-show="!sideNavCtrl.user">
+		<input class="input-text" type="text" placeholder="username" ng-model="loginUsername">
+		<input class="input-text" type="password" placeholder="password" ng-model="loginPassword">
+		<input class="input-button" type="button" value="Login" ng-click="sideNavCtrl.login(loginUsername, loginPassword)">
 	</form>
-	<div class="nav-btn border-top" ui-sref="apply" ui-sref-active="active">
+	<div class="nav-btn border-top" ui-sref="apply" ui-sref-active="active" ng-show="!sideNavCtrl.user">
 		<p>Apply for an account</p><i class="dot"></i>
 	</div>
 </div>

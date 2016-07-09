@@ -1,4 +1,4 @@
 angular.module('yente')
-	.controller('userCardController', function() {
-		
+	.controller('userCardController', function($scope) {
+
 	});

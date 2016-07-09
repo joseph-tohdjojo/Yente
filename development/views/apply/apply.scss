@@ -8,8 +8,8 @@ body {
 			margin-bottom: 3rem;
 			h2 {
 				text-align: center;
-				font-family: $mono-stack;
-				font-weight: 600;
+				font-family: $logo-stack;
+				font-weight: 300;
 				font-size: 3rem;
 			}
 		}
@@ -23,7 +23,7 @@ body {
 				text-align: justify;
 				font-family: $helvetica-stack;
 				font-weight: 300;
-				font-size: 1rem;
+				font-size: 0.8rem;
 				line-height: 1.2rem;
 			}
 			form {
@@ -43,9 +43,13 @@ body {
 						}
 						input {
 							height: 1.5rem;
-							padding: 0 0.2rem;
-							border-radius: 0.2rem;
-							border: 1px solid hsla(210, 3%, 75%, 1);
+							padding: 0 0.2rem 0.2rem;
+							border: none;
+							border-bottom: 1px solid hsla(210, 3%, 75%, 1);
+							font-family: $mono-stack;
+							font-size: 0.8rem;
+							font-weight: 300;
+							outline: none;
 						}
 					}
 				}
@@ -79,6 +83,7 @@ body {
 				}
 				.email {
 					.input-wrapper {
+						margin-bottom: 3rem;
 						input {
 							width: 100%;
 						}
@@ -101,6 +106,7 @@ body {
 							input {
 								width: 100%;
 								margin-bottom: 0.5rem;
+								font-size: 0.8rem;
 							}
 						}
 					}
@@ -110,7 +116,6 @@ body {
 						textarea {
 							width: 100%;
 							resize: vertical;
-							border-radius: 0.2rem;
 							border: 1px solid hsla(210, 3%, 75%, 1);
 						}
 					}

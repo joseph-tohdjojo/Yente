@@ -1,0 +1,19 @@
+<div class="addproject-wrapper">
+	<h2>ADD A PROJECT</h2>
+	<form action="">
+		<input class="input-text" type="text" placeholder="Title">
+		<input class="input-text url" type="text" placeholder="Project URL">
+		<div class="desc">
+			<p>{{500 - description.length}}</p>
+			<textarea name="name" rows="8" cols="40" placeholder="Description (Max: 500 characters)" ng-model="description"></textarea>
+		</div>
+		<div class="file-wrapper">
+			<h4>Upload a preview picture</h4>
+			<div class="button-wrapper">
+				<input type="file" images="images" accept="image/*" fileread project-picture="projectPicture(fileread, fileName)">
+				<!-- <button ngf-select ng-model="picFile" images="images" accept="image/*">Select Picture</button> -->
+				<button ng-click="submitProject()" disabled="active">Submit</button>
+			</div>
+		</div>
+	</form>
+</div>

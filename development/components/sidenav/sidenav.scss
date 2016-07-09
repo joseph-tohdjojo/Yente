@@ -20,7 +20,7 @@ side-nav {
 		}
 	}
 	.logo:hover {
-		background-image: url('http://payload269.cargocollective.com/1/4/140568/7695371/tumblr_n38dp87jkd1rqf91so1_500.gif');
+		background-image: url('https://media.giphy.com/media/83sbbbGYGVCta/giphy.gif');
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -51,6 +51,9 @@ side-nav {
 		.dot {
 			background-color: hsla(0, 0%, 0%, 1);
 		}
+	}
+	.nav-btn:active {
+		background-color: hsla(180, 6%, 99%, 1);
 	}
 	.nav-top {
 		width: 100%;
@@ -131,6 +134,57 @@ side-nav {
 		position: absolute;
 		bottom: 0;
 		box-shadow: -5px 0px 16px 0px rgba(0,0,0,0.2);
+		.user-menu {
+			display: none;
+			height: 15rem;
+			background-color: #E5E5E5;
+			> .nav-btn {
+				padding-left: 2.5rem;
+				padding-right: 0;
+				background-color: hsla(180, 6%, 88%, 1);
+				.icon {
+					width: 3rem;
+					height: 3rem;
+					color: hsla(210, 3%, 75%, 1);
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+			> .nav-btn:hover {
+				background-color: hsla(0, 0%, 90%, 1);
+				cursor: pointer;
+				.icon {
+					color: hsla(0, 0%, 0%, 1);
+				}
+			}
+			> .nav-btn:active {
+				background-color: hsla(180, 6%, 99%, 1);
+			}
+			input {
+				height: 3rem;
+				padding: 0 1rem;
+				border: none;
+				border-top: 1px solid hsla(210, 3%, 75%, 1);
+				background-color: #fff;
+				font-family: $helvetica-stack;
+				font-weight: 300;
+				font-size: 0.9rem;
+				outline: none;
+			}
+			.input-button {
+				width: 100%;
+				cursor: pointer;
+				background-color: hsla(210, 3%, 75%, 1);
+				color: hsla(180, 6%, 97%, 1);
+			}
+			.input-button:hover {
+				background-color: hsla(210, 3%, 65%, 1);
+			}
+			.input-button:active {
+				background-color: hsla(210, 3%, 85%, 1);
+			}
+		}
 		.login-form {
 			width: 100%;
 			height: 15rem;

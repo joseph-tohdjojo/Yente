@@ -1,5 +1,6 @@
 angular.module('yente')
 		.component('sideNav', {
 			templateUrl: './components/sidenav/sidenav-tmpl.html',
-			controller: 'sideNavController'
+			controller: 'SideNavController',
+			controllerAs: 'sideNavCtrl'
 		});

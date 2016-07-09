@@ -1,1 +1,26 @@
-<h1>TALENTS!!!!!!</h1>
+<div class="card" ng-repeat="user in talentsCtrl.users">
+	<!-- <div class="user-card">
+		<div class="user-info">
+			<div class="avatar">
+				<img ng-src="{{user.avatar}}" alt="">
+			</div>
+			<div class="info">
+				<h3>{{user.firstName}} {{user.lastName}}</h3>
+				<h4>{{user.city}}, {{user.state}}</h4>
+				<p>{{user.bio}}</p>
+				<div class="links">
+					<a class="icon email" href="{{user.email}}" target="_blank"><i data-icon="c"></i></a>
+					<a class="icon follow" href="{{user.github}}" target="_blank"><i data-icon="a"></i></a>
+				</div>
+			</div>
+			</div>
+			<div class="projects">
+			<div class="project-browser" ng-repeat="link in user.links">
+				<img ng-src="{{link}}" alt="">
+			</div>
+		</div>
+	</div> -->
+
+	<user-card user="user"></user-card>
+	<line></line>
+</div>

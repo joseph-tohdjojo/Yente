@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html ng-app="yente">
 	<head>
+		<link href="https://file.myfontastic.com/rs9ZNpzfcuskkiqyrvLvMc/icons.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-img-crop/0.3.2/ng-img-crop.css">
 		<link rel="stylesheet" href="style.css">
 		<meta charset="utf-8">
 		<title>Yente</title>
 	</head>
-	<body>
+	<body ng-controller="MainController as mainCtrl">
+
 		<side-nav></side-nav>
 		<ui-view></ui-view>
 
@@ -13,7 +16,9 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js" charset="utf-8"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js" charset="utf-8"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js" charset="utf-8"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/ngInfiniteScroll/1.3.0/ng-infinite-scroll.js" charset="utf-8"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload-shim.js" charset="utf-8"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.0.4/ng-file-upload.js" charset="utf-8"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-img-crop/0.3.2/ng-img-crop.js" charset="utf-8"></script>
 		<script src="bundle.js" charset="utf-8"></script>
 	</body>
 </html>
