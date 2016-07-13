@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,700|Source+Code+Pro:300,400,600|Teko';
+@import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Source+Code+Pro:300,400,600|Teko';
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -19,6 +19,38 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
   box-sizing: border-box; }
+
+html::-moz-selection, body::-moz-selection, div::-moz-selection, span::-moz-selection, applet::-moz-selection, object::-moz-selection, iframe::-moz-selection,
+h1::-moz-selection, h2::-moz-selection, h3::-moz-selection, h4::-moz-selection, h5::-moz-selection, h6::-moz-selection, p::-moz-selection, blockquote::-moz-selection, pre::-moz-selection,
+a::-moz-selection, abbr::-moz-selection, acronym::-moz-selection, address::-moz-selection, big::-moz-selection, cite::-moz-selection, code::-moz-selection,
+del::-moz-selection, dfn::-moz-selection, em::-moz-selection, img::-moz-selection, ins::-moz-selection, kbd::-moz-selection, q::-moz-selection, s::-moz-selection, samp::-moz-selection,
+small::-moz-selection, strike::-moz-selection, strong::-moz-selection, sub::-moz-selection, sup::-moz-selection, tt::-moz-selection, var::-moz-selection,
+b::-moz-selection, u::-moz-selection, i::-moz-selection, center::-moz-selection, input::-moz-selection,
+dl::-moz-selection, dt::-moz-selection, dd::-moz-selection, ol::-moz-selection, ul::-moz-selection, li::-moz-selection,
+fieldset::-moz-selection, form::-moz-selection, label::-moz-selection, legend::-moz-selection,
+table::-moz-selection, caption::-moz-selection, tbody::-moz-selection, tfoot::-moz-selection, thead::-moz-selection, tr::-moz-selection, th::-moz-selection, td::-moz-selection,
+article::-moz-selection, aside::-moz-selection, canvas::-moz-selection, details::-moz-selection, embed::-moz-selection,
+figure::-moz-selection, figcaption::-moz-selection, footer::-moz-selection, header::-moz-selection, hgroup::-moz-selection,
+menu::-moz-selection, nav::-moz-selection, output::-moz-selection, ruby::-moz-selection, section::-moz-selection, summary::-moz-selection,
+time::-moz-selection, mark::-moz-selection, audio::-moz-selection, video::-moz-selection {
+  background: #ffdc26;
+  /* WebKit/Blink Browsers */ }
+
+html::selection, body::selection, div::selection, span::selection, applet::selection, object::selection, iframe::selection,
+h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection, p::selection, blockquote::selection, pre::selection,
+a::selection, abbr::selection, acronym::selection, address::selection, big::selection, cite::selection, code::selection,
+del::selection, dfn::selection, em::selection, img::selection, ins::selection, kbd::selection, q::selection, s::selection, samp::selection,
+small::selection, strike::selection, strong::selection, sub::selection, sup::selection, tt::selection, var::selection,
+b::selection, u::selection, i::selection, center::selection, input::selection,
+dl::selection, dt::selection, dd::selection, ol::selection, ul::selection, li::selection,
+fieldset::selection, form::selection, label::selection, legend::selection,
+table::selection, caption::selection, tbody::selection, tfoot::selection, thead::selection, tr::selection, th::selection, td::selection,
+article::selection, aside::selection, canvas::selection, details::selection, embed::selection,
+figure::selection, figcaption::selection, footer::selection, header::selection, hgroup::selection,
+menu::selection, nav::selection, output::selection, ruby::selection, section::selection, summary::selection,
+time::selection, mark::selection, audio::selection, video::selection {
+  background: #ffdc26;
+  /* WebKit/Blink Browsers */ }
 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -62,7 +94,8 @@ body {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
-      flex-direction: row; }
+      flex-direction: row;
+  box-sizing: border-box; }
   body side-nav {
     width: 14rem;
     height: 100vh;
@@ -71,65 +104,13 @@ body {
   body ui-view {
     width: 100%;
     margin-left: 14rem;
-    padding: 3rem; }
+    padding: 3rem;
+    box-sizing: border-box; }
   body .line {
     width: 100%;
     height: 1px;
     background-color: #e4e7e7;
     margin: 3rem 0; }
-
-.grid {
-  -moz-column-width: 300px;
-       column-width: 300px;
-  -moz-column-gap: 30px;
-       column-gap: 30px;
-  width: 90%;
-  margin: 0 auto;
-  max-width: 1100px; }
-  .grid .project {
-    box-sizing: border-box;
-    cursor: pointer;
-    color: #aaa;
-    font-size: 13px;
-    display: block;
-    margin-bottom: 30px;
-    page-break-inside: avoid;
-         break-inside: avoid;
-    border-radius: 0.4rem 0.4rem 0 0; }
-    .grid .project .project-browser .browser-top {
-      width: 100%;
-      height: 1.2rem;
-      background: #e0e0e0;
-      border-radius: 0.4rem 0.4rem 0 0; }
-      .grid .project .project-browser .browser-top .browser-btns {
-        width: 3rem;
-        height: 100%;
-        margin-left: 0.5rem;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-        -ms-flex-align: center;
-            align-items: center; }
-        .grid .project .project-browser .browser-top .browser-btns .btn {
-          width: 0.6rem;
-          height: 0.6rem;
-          border-radius: 1rem;
-          background-color: #AAA; }
-        .grid .project .project-browser .browser-top .browser-btns .red {
-          background-color: #e1666a; }
-        .grid .project .project-browser .browser-top .browser-btns .yellow {
-          background-color: #eaa861; }
-        .grid .project .project-browser .browser-top .browser-btns .green {
-          background-color: #5aa079; }
-    .grid .project .project-browser img {
-      width: 100%;
-      background-color: #333; }
-    .grid .project .project-browser .browser-bottom {
-      width: 100%;
-      height: 1.2rem;
-      background: #e0e0e0;
-      border-radius: 0 0 0.4rem 0.4rem; }
 
 side-nav {
   width: 14rem;
@@ -192,7 +173,7 @@ side-nav {
       background-color: #fff;
       display: none; }
       side-nav .nav-top .project-info h2 {
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Playfair Display", serif;
         font-weight: 700;
         font-size: 2rem;
         margin-bottom: 1rem;
@@ -216,7 +197,7 @@ side-nav {
         cursor: pointer; }
         side-nav .nav-top .project-info .visit p {
           padding-bottom: 0.5rem;
-          font-family: "Cormorant Garamond", serif;
+          font-family: "Playfair Display", serif;
           font-weight: 400;
           font-size: 1.5rem;
           line-height: 1.5rem;
@@ -345,108 +326,147 @@ side-nav {
 
 user-card {
   width: 100%;
-  max-height: 15rem;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  -ms-flex-pack: center;
+      justify-content: center;
   -ms-flex-align: center;
-      align-items: center; }
+      align-items: center;
+  box-sizing: border-box; }
   user-card .user-info {
-    width: 28%;
-    min-width: 500px;
-    margin-right: 2%;
+    width: 100%;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: start;
-        justify-content: flex-start; }
-    user-card .user-info .avatar {
-      width: 25%;
-      margin-right: 5%;
-      border-radius: 50%; }
-      user-card .user-info .avatar img {
-        width: 100%;
-        border-radius: 50%; }
-    user-card .user-info .info {
-      width: 70%;
-      height: 100%;
+        justify-content: flex-start;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-align: stretch;
+        align-items: stretch; }
+    user-card .user-info > div {
+      margin-bottom: 2rem; }
+    user-card .user-info .user {
+      width: 50%;
       display: -ms-flexbox;
       display: flex;
       -ms-flex-pack: start;
-          justify-content: flex-start;
-      -ms-flex-direction: column;
-          flex-direction: column; }
-      user-card .user-info .info h3 {
-        font-family: "Teko", Helvetica, sans-serif;
-        letter-spacing: 0.08rem;
-        font-weight: lighter;
-        font-size: 1.5rem;
-        line-height: 1.8rem;
-        color: #788787; }
-      user-card .user-info .info h4 {
-        font-family: Helvetica, sans-serif;
-        font-weight: lighter;
-        font-size: 1rem;
-        color: #788787;
-        margin-bottom: 1rem; }
-      user-card .user-info .info p {
-        font-family: Helvetica, sans-serif;
-        font-weight: lighter;
-        font-size: 0.8rem;
-        line-height: 1rem;
-        color: #939f9f;
-        margin-bottom: 0.5rem; }
-      user-card .user-info .info .links {
-        width: 100%;
-        height: 2rem;
+          justify-content: flex-start; }
+      user-card .user-info .user .avatar {
+        min-width: 8rem;
+        max-width: 10rem;
+        margin-right: 5%;
+        border-radius: 50%;
+        box-sizing: border-box; }
+        user-card .user-info .user .avatar img {
+          width: 100%;
+          border-radius: 50%; }
+      user-card .user-info .user .info {
+        width: 60%;
+        float: left;
         display: -ms-flexbox;
         display: flex;
-        -ms-flex-direction: row;
-            flex-direction: row; }
-        user-card .user-info .info .links .icon {
-          width: 2rem;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+        user-card .user-info .user .info h3 {
+          width: 100%;
+          font-family: "Teko", Helvetica, sans-serif;
+          letter-spacing: 0.08rem;
+          font-weight: lighter;
+          font-size: 1.5rem;
+          line-height: 1.8rem;
+          color: #788787; }
+        user-card .user-info .user .info h4 {
+          width: 100%;
+          font-family: Helvetica, sans-serif;
+          font-weight: lighter;
+          font-size: 1rem;
+          color: #788787;
+          margin-bottom: 1rem; }
+        user-card .user-info .user .info p {
+          width: 100%;
+          font-family: Helvetica, sans-serif;
+          font-weight: lighter;
+          font-size: 0.8rem;
+          line-height: 1rem;
+          color: #939f9f;
+          margin-bottom: 0.5rem;
+          height: 5rem;
+          overflow: hidden;
+          text-overflow: ellipsis; }
+        user-card .user-info .user .info .links {
+          width: 100%;
           height: 2rem;
-          margin-right: 0.5rem;
-          background-color: #c9cfcf;
-          border-radius: 15%;
           display: -ms-flexbox;
           display: flex;
-          -ms-flex-pack: center;
-              justify-content: center;
-          -ms-flex-align: center;
-              align-items: center;
-          cursor: pointer; }
-          user-card .user-info .info .links .icon i {
-            color: #fff; }
-        user-card .user-info .info .links .icon:hover {
-          background: #aeb7b7; }
-        user-card .user-info .info .links .icon:active {
-          background: #d6dbdb; }
-  user-card .projects::-webkit-scrollbar {
-    display: none; }
-  user-card .projects {
-    width: 70%;
-    min-width: 400px;
-    max-width: 1000px;
-    height: 100%;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-        align-items: center; }
-    user-card .projects .project-browser {
-      width: 30%;
-      min-width: 15rem;
-      margin-right: 1rem;
-      border: 12px solid #f1f3f3;
-      cursor: pointer;
-      display: inline-block; }
-      user-card .projects .project-browser img {
-        width: 100%; }
+          -ms-flex-direction: row;
+              flex-direction: row; }
+          user-card .user-info .user .info .links .icon {
+            width: 2rem;
+            height: 2rem;
+            margin-right: 0.5rem;
+            background-color: #c9cfcf;
+            border-radius: 15%;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: center;
+                justify-content: center;
+            -ms-flex-align: center;
+                align-items: center;
+            cursor: pointer; }
+            user-card .user-info .user .info .links .icon i {
+              color: #fff; }
+          user-card .user-info .user .info .links .icon:hover {
+            background: #aeb7b7; }
+          user-card .user-info .user .info .links .icon:active {
+            background: #d6dbdb; }
+  user-card .project-container {
+    width: 16rem;
+    height: 10rem;
+    margin-right: 1rem;
+    border: 12px solid #f1f3f3;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 1px 1px 5px #888888;
+    overflow: hidden; }
+    user-card .project-container img {
+      width: 100%;
+      background-color: #333;
+      display: inline; }
 
 body ui-view {
   height: auto; }
+  body ui-view .modal {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(51, 51, 51, 0.4);
+    z-index: 200;
+    display: none; }
+    body ui-view .modal .modal-container {
+      width: 100vw;
+      height: 100vh;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: center;
+          justify-content: center;
+      -ms-flex-align: center;
+          align-items: center; }
+      body ui-view .modal .modal-container .inner-container {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: center;
+            justify-content: center;
+        -ms-flex-align: center;
+            align-items: center;
+        padding: 3rem;
+        background-color: #CCC; }
+        body ui-view .modal .modal-container .inner-container p {
+          color: black; }
   body ui-view .addproject-wrapper {
     display: -ms-flexbox;
     display: flex;
@@ -458,7 +478,7 @@ body ui-view {
       font-family: "Teko", Helvetica, sans-serif;
       font-size: 3rem;
       margin-bottom: 4rem; }
-    body ui-view .addproject-wrapper form {
+    body ui-view .addproject-wrapper > .form {
       width: 100%;
       display: -ms-flexbox;
       display: flex;
@@ -466,7 +486,7 @@ body ui-view {
           flex-direction: column;
       -ms-flex-align: center;
           align-items: center; }
-      body ui-view .addproject-wrapper form .input-text {
+      body ui-view .addproject-wrapper > .form .input-text {
         width: 50%;
         height: 1.5rem;
         padding: 0 0.2rem 0.2rem;
@@ -477,20 +497,20 @@ body ui-view {
         font-weight: 300;
         outline: none;
         margin-bottom: 1rem; }
-      body ui-view .addproject-wrapper form .url {
+      body ui-view .addproject-wrapper > .form .url {
         margin-bottom: 4rem; }
-      body ui-view .addproject-wrapper form .desc {
+      body ui-view .addproject-wrapper > .form .desc {
         width: 50%;
         margin-bottom: 3rem; }
-        body ui-view .addproject-wrapper form .desc p {
+        body ui-view .addproject-wrapper > .form .desc p {
           font-family: "Source Code Pro", monospace;
           margin-bottom: 0.5rem; }
-        body ui-view .addproject-wrapper form .desc textarea {
+        body ui-view .addproject-wrapper > .form .desc textarea {
           width: 100%;
           resize: vertical;
           border: 1px solid #bdbfc1;
           font-family: "Source Code Pro", monospace; }
-      body ui-view .addproject-wrapper form .file-wrapper {
+      body ui-view .addproject-wrapper > .form .file-wrapper {
         width: 50%;
         display: -ms-flexbox;
         display: flex;
@@ -499,38 +519,26 @@ body ui-view {
         -ms-flex-direction: column;
             flex-direction: column;
         font-family: "Source Code Pro", monospace; }
-        body ui-view .addproject-wrapper form .file-wrapper h4 {
+        body ui-view .addproject-wrapper > .form .file-wrapper h4 {
           font-family: "Teko", Helvetica, sans-serif;
           font-size: 2rem;
-          margin-bottom: 0.5rem; }
-        body ui-view .addproject-wrapper form .file-wrapper .button-wrapper {
+          margin-bottom: 1rem; }
+        body ui-view .addproject-wrapper > .form .file-wrapper .button-wrapper {
           display: -ms-flexbox;
           display: flex;
-          -ms-flex-direction: row;
-              flex-direction: row;
+          -ms-flex-direction: column;
+              flex-direction: column;
           -ms-flex-pack: start;
               justify-content: flex-start; }
-          body ui-view .addproject-wrapper form .file-wrapper .button-wrapper button {
+          body ui-view .addproject-wrapper > .form .file-wrapper .button-wrapper .choose-file {
+            margin-bottom: 2rem; }
+          body ui-view .addproject-wrapper > .form .file-wrapper .button-wrapper .preview {
+            width: 30rem;
+            margin-bottom: 2rem; }
+          body ui-view .addproject-wrapper > .form .file-wrapper .button-wrapper .project-submit {
             width: 20%;
             height: 2rem;
             margin-right: 1rem; }
-        body ui-view .addproject-wrapper form .file-wrapper span {
-          font-size: 0.8rem;
-          font-weight: lighter;
-          margin-bottom: 0.8rem; }
-        body ui-view .addproject-wrapper form .file-wrapper .progress {
-          display: inline-block;
-          width: 100px;
-          border: 1px solid #bdbfc1; }
-          body ui-view .addproject-wrapper form .file-wrapper .progress div {
-            font-size: smaller;
-            background: #bdbfc1;
-            width: 0; }
-        body ui-view .addproject-wrapper form .file-wrapper .cropArea {
-          background: #E4E4E4;
-          overflow: hidden;
-          width: 500px;
-          height: 350px; }
 
 body ui-view .title {
   width: 80%;
@@ -560,19 +568,19 @@ body ui-view .application {
     font-weight: 300;
     font-size: 0.8rem;
     line-height: 1.2rem; }
-  body ui-view .application form {
+  body ui-view .application .form {
     width: 65%;
     font-family: Helvetica, sans-serif;
     font-size: 0.8rem; }
-    body ui-view .application form > p {
+    body ui-view .application .form > p {
       margin-bottom: 2rem;
       color: #e1666a; }
-    body ui-view .application form div .input-wrapper {
+    body ui-view .application .form div .input-wrapper {
       margin-bottom: 1rem;
       margin-right: 1rem; }
-      body ui-view .application form div .input-wrapper p {
+      body ui-view .application .form div .input-wrapper p {
         margin-bottom: 0.3rem; }
-      body ui-view .application form div .input-wrapper input {
+      body ui-view .application .form div .input-wrapper input {
         height: 1.5rem;
         padding: 0 0.2rem 0.2rem;
         border: none;
@@ -581,84 +589,150 @@ body ui-view .application {
         font-size: 0.8rem;
         font-weight: 300;
         outline: none; }
-    body ui-view .application form .username .input-wrapper input {
+    body ui-view .application .form .username .input-wrapper input {
       width: 100%; }
-    body ui-view .application form .password {
+    body ui-view .application .form .password {
+      margin-bottom: 3rem; }
+      body ui-view .application .form .password .input-wrapper input {
+        width: 100%; }
+    body ui-view .application .form .name {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: row;
+          flex-direction: row; }
+      body ui-view .application .form .name .input-wrapper {
+        width: 50%; }
+        body ui-view .application .form .name .input-wrapper input {
+          width: 100%; }
+    body ui-view .application .form .email .input-wrapper {
+      margin-bottom: 3rem; }
+      body ui-view .application .form .email .input-wrapper input {
+        width: 100%; }
+    body ui-view .application .form .location {
       display: -ms-flexbox;
       display: flex;
       -ms-flex-direction: row;
           flex-direction: row;
       margin-bottom: 3rem; }
-      body ui-view .application form .password .input-wrapper {
-        width: 50%; }
-        body ui-view .application form .password .input-wrapper input {
+      body ui-view .application .form .location .city {
+        width: 70%; }
+        body ui-view .application .form .location .city input {
           width: 100%; }
-    body ui-view .application form .name {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-direction: row;
-          flex-direction: row; }
-      body ui-view .application form .name .input-wrapper {
-        width: 50%; }
-        body ui-view .application form .name .input-wrapper input {
+      body ui-view .application .form .location .state {
+        width: 70%; }
+        body ui-view .application .form .location .state input {
           width: 100%; }
-    body ui-view .application form .email .input-wrapper {
-      margin-bottom: 3rem; }
-      body ui-view .application form .email .input-wrapper input {
-        width: 100%; }
-    body ui-view .application form .links {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-direction: column;
-          flex-direction: column; }
-      body ui-view .application form .links p {
-        margin-bottom: 0.2rem; }
-      body ui-view .application form .links .container {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-direction: row;
-            flex-direction: row;
-        -ms-flex-pack: justify;
-            justify-content: space-between; }
-        body ui-view .application form .links .container .input-wrapper {
-          width: 50%;
-          display: -ms-flexbox;
-          display: flex;
-          -ms-flex-direction: column;
-              flex-direction: column; }
-          body ui-view .application form .links .container .input-wrapper input {
-            width: 100%;
-            margin-bottom: 0.5rem;
-            font-size: 0.8rem; }
-    body ui-view .application form .bio .input-wrapper textarea {
+    body ui-view .application .form .bio .input-wrapper textarea {
       width: 100%;
       resize: vertical;
       border: 1px solid #bdbfc1; }
-    body ui-view .application form .submit {
+    body ui-view .application .form .submit {
       width: 8rem;
       height: 2rem;
       background-color: #bdbfc1;
       border: none;
       outline: none;
       color: #fff; }
-    body ui-view .application form .submit:hover {
+    body ui-view .application .form .submit:hover {
       background-color: #a3a6a8; }
-    body ui-view .application form .submit:active {
+    body ui-view .application .form .submit:active {
       background-color: #d8d9da; }
 
-.about {
+body ui-view .about {
   width: 40%;
   margin: 0 auto 3rem; }
-  .about p {
+  body ui-view .about p {
     font-family: "Source Code Pro", monospace;
     font-size: 0.9rem;
     line-height: 1.2rem;
     text-align: center;
     letter-spacing: 0.1rem; }
-    .about p b {
+    body ui-view .about p b {
       font-weight: 600; }
-    .about p i {
+    body ui-view .about p i {
       background-color: yellow; }
+
+body ui-view .grid {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  body ui-view .grid .gutter-sizer {
+    width: 2.5%; }
+  body ui-view .grid .grid-sizer,
+  body ui-view .grid .project {
+    width: 23%;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 13px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: start;
+        justify-content: flex-start;
+    margin-bottom: 3rem; }
+    body ui-view .grid .grid-sizer .project-browser,
+    body ui-view .grid .project .project-browser {
+      box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.3);
+      border-radius: 0.4rem 0.4rem 0 0;
+      margin-bottom: 0.5rem;
+      overflow: hidden; }
+      body ui-view .grid .grid-sizer .project-browser .browser-top,
+      body ui-view .grid .project .project-browser .browser-top {
+        width: 100%;
+        height: 1rem;
+        background: #e0e0e0;
+        border-radius: 0.4rem 0.4rem 0 0; }
+        body ui-view .grid .grid-sizer .project-browser .browser-top .browser-btns,
+        body ui-view .grid .project .project-browser .browser-top .browser-btns {
+          width: 2rem;
+          height: 100%;
+          margin-left: 0.5rem;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+          -ms-flex-align: center;
+              align-items: center; }
+          body ui-view .grid .grid-sizer .project-browser .browser-top .browser-btns .btn,
+          body ui-view .grid .project .project-browser .browser-top .browser-btns .btn {
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 1rem;
+            background-color: #AAA; }
+          body ui-view .grid .grid-sizer .project-browser .browser-top .browser-btns .red,
+          body ui-view .grid .project .project-browser .browser-top .browser-btns .red {
+            background-color: rgba(225, 102, 106, 0.4); }
+          body ui-view .grid .grid-sizer .project-browser .browser-top .browser-btns .yellow,
+          body ui-view .grid .project .project-browser .browser-top .browser-btns .yellow {
+            background-color: rgba(234, 168, 97, 0.4); }
+          body ui-view .grid .grid-sizer .project-browser .browser-top .browser-btns .green,
+          body ui-view .grid .project .project-browser .browser-top .browser-btns .green {
+            background-color: rgba(90, 160, 121, 0.4); }
+      body ui-view .grid .grid-sizer .project-browser img,
+      body ui-view .grid .project .project-browser img {
+        width: 100%;
+        background-color: #888; }
+    body ui-view .grid .grid-sizer .project-browser:hover,
+    body ui-view .grid .project .project-browser:hover {
+      box-shadow: 1px 1px 16px 0px rgba(0, 0, 0, 0.3); }
+    body ui-view .grid .grid-sizer p,
+    body ui-view .grid .project p {
+      font-family: "Source Code Pro", monospace;
+      font-weight: bold;
+      width: 100%;
+      text-align: right; }
+  body ui-view .grid .project:hover p {
+    color: #000; }
 
 body ui-view .profile-wrapper {
   width: 100%;
@@ -726,11 +800,12 @@ body ui-view .profile-wrapper {
           max-width: 35rem; }
 
 body ui-view > .project-browser {
-  width: 800px;
+  width: 80%;
   margin: 0 auto;
   border-radius: 0.4rem 0.4rem;
   box-shadow: 0.1rem 0.1rem 16px 0px rgba(0, 0, 0, 0.5);
-  cursor: pointer; }
+  cursor: pointer;
+  box-sizing: border-box; }
   body ui-view > .project-browser .browser-top {
     width: 100%;
     height: 1.2rem;
@@ -757,14 +832,26 @@ body ui-view > .project-browser {
         background-color: #eaa861; }
       body ui-view > .project-browser .browser-top .browser-btns .green {
         background-color: #5aa079; }
-  body ui-view > .project-browser img {
+  body ui-view > .project-browser iframe {
     width: 100%;
-    background-color: #333; }
+    height: 40rem; }
+  body ui-view > .project-browser .image {
+    width: 100%;
+    height: 100%;
+    max-height: 40rem;
+    overflow-y: scroll; }
+    body ui-view > .project-browser .image img {
+      width: 100%;
+      background-color: #333;
+      box-sizing: border-box; }
   body ui-view > .project-browser .browser-bottom {
     width: 100%;
     height: 1.2rem;
     background: #e0e0e0;
     border-radius: 0 0 0.4rem 0.4rem; }
+
+body ui-view .settings-title h2 {
+  font-family: "Teko", Helvetica, sans-serif; }
 
 body ui-view .card {
   width: 100%;

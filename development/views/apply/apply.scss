@@ -26,7 +26,7 @@ body {
 				font-size: 0.8rem;
 				line-height: 1.2rem;
 			}
-			form {
+			.form {
 				width: 65%;
 				font-family: $helvetica-stack;
 				font-size: 0.8rem;
@@ -61,11 +61,8 @@ body {
 					}
 				}
 				.password {
-					display: flex;
-					flex-direction: row;
 					margin-bottom: 3rem;
 					.input-wrapper {
-						width: 50%;
 						input {
 							width: 100%;
 						}
@@ -89,25 +86,20 @@ body {
 						}
 					}
 				}
-				.links {
+				.location {
 					display: flex;
-					flex-direction: column;
-					p {
-						margin-bottom: 0.2rem;
+					flex-direction: row;
+					margin-bottom: 3rem;
+					.city {
+						width: 70%;
+						input {
+							width: 100%;
+						}
 					}
-					.container {
-						display: flex;
-						flex-direction: row;
-						justify-content: space-between;
-						.input-wrapper {
-							width: 50%;
-							display: flex;
-							flex-direction: column;
-							input {
-								width: 100%;
-								margin-bottom: 0.5rem;
-								font-size: 0.8rem;
-							}
+					.state {
+						width: 70%;
+						input {
+							width: 100%;
 						}
 					}
 				}

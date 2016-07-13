@@ -1,4 +1,4 @@
-<div class="project-browser">
+<div class="project-browser" style="min-width: 0">
 	<div class="browser-top">
 		<div class="browser-btns">
 			<div class="btn red"></div>
@@ -6,8 +6,10 @@
 			<div class="btn green"></div>
 		</div>
 	</div>
-	<img src="http://payload255.cargocollective.com/1/5/189127/7415188/Schermafbeelding%202014-02-24%20om%2009.22.29_905.png" alt="">
+	<div class="image">
+		<img ng-src="{{projectCtrl.projInfo.projectImageUrl}}" alt="">
+	</div>
 	<div class="browser-bottom"></div>
 </div>
-<div class="line"></div>
-<user-card></user-card>
+<div class="line" style=""></div>
+<user-card style="min-width: 0"></user-card>

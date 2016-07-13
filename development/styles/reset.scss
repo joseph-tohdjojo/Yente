@@ -1,7 +1,7 @@
-@import 'https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,700|Source+Code+Pro:300,400,600|Teko';
+@import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Source+Code+Pro:300,400,600|Teko';
 $mono-stack: 'Source Code Pro', monospace;
 $logo-stack: 'Teko', Helvetica, sans-serif;
-$serif-stack: 'Cormorant Garamond', serif;
+$serif-stack: 'Playfair Display', serif;
 $helvetica-stack: Helvetica, sans-serif;
 
 html, body, div, span, applet, object, iframe,
@@ -24,6 +24,22 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
     box-sizing: border-box;
+}
+
+html::selection, body::selection, div::selection, span::selection, applet::selection, object::selection, iframe::selection,
+h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection, p::selection, blockquote::selection, pre::selection,
+a::selection, abbr::selection, acronym::selection, address::selection, big::selection, cite::selection, code::selection,
+del::selection, dfn::selection, em::selection, img::selection, ins::selection, kbd::selection, q::selection, s::selection, samp::selection,
+small::selection, strike::selection, strong::selection, sub::selection, sup::selection, tt::selection, var::selection,
+b::selection, u::selection, i::selection, center::selection, input::selection,
+dl::selection, dt::selection, dd::selection, ol::selection, ul::selection, li::selection,
+fieldset::selection, form::selection, label::selection, legend::selection,
+table::selection, caption::selection, tbody::selection, tfoot::selection, thead::selection, tr::selection, th::selection, td::selection,
+article::selection, aside::selection, canvas::selection, details::selection, embed::selection,
+figure::selection, figcaption::selection, footer::selection, header::selection, hgroup::selection,
+menu::selection, nav::selection, output::selection, ruby::selection, section::selection, summary::selection,
+time::selection, mark::selection, audio::selection, video::selection {
+  background: #ffdc26; /* WebKit/Blink Browsers */
 }
 
 

@@ -7,7 +7,7 @@ var projectSchema = new Schema({
 	projectUrl: {type: String, required: true},
 	projectImageUrl: {type: String, required: true},
 	dateAdded: {type: Date, default: Date.now()},
-	creator: {type: Schema.ObjectId, ref: 'User', required: true},
+	creator: {type: String, ref: 'User', required: true},
 	accepted: {type: Boolean, default: false}
 });
 

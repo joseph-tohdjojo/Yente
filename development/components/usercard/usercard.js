@@ -1,7 +1,10 @@
 angular.module('yente')
-		.component('userCard', {
-			templateUrl: './components/usercard/usercard-tmpl.html',
-			controller: 'userCardController',
-			controllerAs: 'vm',
-			bindings: { user: '<' }
+		.directive('userCard', function() {
+			return {
+				restrict: 'E',
+				templateUrl: './components/usercard/usercard-tmpl.html',
+				scope: false,
+				controller: 'UserCardController',
+				controllerAs: 'userCardCtrl'
+			}
 		});

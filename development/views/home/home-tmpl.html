@@ -2,4 +2,21 @@
 	<p><b>Yente</b> is a <i>curated publishing platform</i> aimed at creating accessible tools and a networked context to enhance the exposure of talented individuals on the Internet.</p>
 </div>
 
-<project-grid></project-grid>
+<div class="grid" masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".project", "columnWidth": ".grid-sizer", "gutter": ".gutter-sizer", "percentPosition": "true"}'>
+	<div class="grid-sizer"></div>
+	<div class="gutter-sizer"></div>
+	<div class="project" ng-repeat="project in homeCtrl.projects" ui-sref="project({id: project._id})">
+		<div class="project-browser">
+			<div class="browser-top">
+				<div class="browser-btns">
+					<div class="btn red"></div>
+					<div class="btn yellow"></div>
+					<div class="btn green"></div>
+				</div>
+			</div>
+			<img ng-src="{{project.projectImageUrl}}" alt="">
+		</div>
+		<p>{{project.creator.firstName}} {{project.creator.lastName}}</p>
+	</div>
+
+</div>

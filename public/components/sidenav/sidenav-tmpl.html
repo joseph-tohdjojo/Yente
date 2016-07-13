@@ -6,13 +6,13 @@
 		<p>Yente Gallery</p><i class="dot"></i>
 	</div>
 	<div class="project-info border-bottom">
-		<h2>Jawbone</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		<div class="visit">
+		<h2>{{sideNavCtrl.projTitle}}</h2>
+		<p>{{sideNavCtrl.projDesc}}</p>
+		<a class="visit" href="{{sideNavCtrl.projUrl}}" target="_blank">
 			<p>View Project</p>
-		</div>
+		</a>
 	</div>
-	<div class="nav-btn border-bottom" ui-sref="talents" ui-sref-active="active">
+	<div class="nav-btn border-bottom" ui-sref="home">
 		<p>Talent Profiles</p><i class="dot"></i>
 	</div>
 	<div class="search border-bottom">
@@ -21,27 +21,27 @@
 </div>
 
 <div class="nav-bottom">
-	<div class="nav-btn border-top username" ng-show="sideNavCtrl.user">
+	<div class="nav-btn border-top username" ng-show="sideNavCtrl.user" ng-click="sideNavCtrl.slideUserMenu()">
 		<p>@{{sideNavCtrl.user.username}}</p><i class="dot"></i>
 	</div>
 	<div class="user-menu" action="" ng-show="sideNavCtrl.user">
-		<div class="nav-btn border-top" ui-sref="settings" ui-sref-active="active">
+		<div class="nav-btn border-top">
 			<p>Settings</p><div class="icon"><i data-icon="b"></i></div>
 		</div>
 		<div class="nav-btn border-top" ui-sref="addproject" ui-sref-active="active">
-			<p>Add a project</p><div class="icon"><i data-icon="d"></i></div>
+			<p>Submit a project</p><div class="icon"><i data-icon="d"></i></div>
 		</div>
-		<input class="input-button" type="button" value="Logout" ng-click="">
+		<input class="input-button" type="button" value="Logout" ng-click="sideNavCtrl.logout()">
 	</div>
-	<div class="nav-btn border-top login" ng-show="!sideNavCtrl.user">
+	<div class="nav-btn border-top login" ng-show="!sideNavCtrl.user" ng-click="sideNavCtrl.slideLoginMenu()">
 		<p>Login</p><i class="dot"></i>
 	</div>
 	<form class="login-form" action="" ng-show="!sideNavCtrl.user">
-		<input class="input-text" type="text" placeholder="username" ng-model="loginUsername">
-		<input class="input-text" type="password" placeholder="password" ng-model="loginPassword">
-		<input class="input-button" type="button" value="Login" ng-click="sideNavCtrl.login(loginUsername, loginPassword)">
+		<input class="input-text" type="text" placeholder="username" ng-model="sideNavCtrl.loginUsername">
+		<input class="input-text" type="password" placeholder="password" ng-model="sideNavCtrl.loginPassword">
+		<input class="input-button" type="button" value="Login" ng-click="sideNavCtrl.login(sideNavCtrl.loginUsername, sideNavCtrl.loginPassword)">
 	</form>
-	<div class="nav-btn border-top" ui-sref="apply" ui-sref-active="active" ng-show="!sideNavCtrl.user">
+	<div class="nav-btn border-top" ui-sref="apply" ui-sref-active="active" ng-if="!sideNavCtrl.user">
 		<p>Apply for an account</p><i class="dot"></i>
 	</div>
 </div>

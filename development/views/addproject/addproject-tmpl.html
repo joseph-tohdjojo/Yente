@@ -1,19 +1,26 @@
+<div class="modal">
+	<div class="modal-container">
+		<div class="inner-container">
+			<p>{{addProjectCtrl.message}}</p>
+		</div>
+	</div>
+</div>
 <div class="addproject-wrapper">
 	<h2>ADD A PROJECT</h2>
-	<form action="">
-		<input class="input-text" type="text" placeholder="Title">
-		<input class="input-text url" type="text" placeholder="Project URL">
+	<div class="form">
+		<input class="input-text" type="text" placeholder="Title" ng-model="addProjectCtrl.projectTitle">
+		<input class="input-text url" type="text" placeholder="Project URL" ng-model="addProjectCtrl.projectUrl">
 		<div class="desc">
-			<p>{{500 - description.length}}</p>
-			<textarea name="name" rows="8" cols="40" placeholder="Description (Max: 500 characters)" ng-model="description"></textarea>
+			<p>{{500 - addProjectCtrl.projectDescription.length}}</p>
+			<textarea rows="8" cols="40" placeholder="Description (Max: 500 characters)" ng-model="addProjectCtrl.projectDescription"></textarea>
 		</div>
 		<div class="file-wrapper">
-			<h4>Upload a preview picture</h4>
+			<h4>Upload a picture of your project</h4>
 			<div class="button-wrapper">
-				<input type="file" images="images" accept="image/*" fileread project-picture="projectPicture(fileread, fileName)">
-				<!-- <button ngf-select ng-model="picFile" images="images" accept="image/*">Select Picture</button> -->
-				<button ng-click="submitProject()" disabled="active">Submit</button>
+				<input class="choose-file" type="file" images="images" accept="image/*" fileread project-picture="addProjectCtrl.projectPicture(fileread, fileName)">
+				<img class="preview" src="" alt="">
+				<button class="project-submit" ng-click="addProjectCtrl.submitProject(addProjectCtrl.projectTitle, addProjectCtrl.projectUrl, addProjectCtrl.projectDescription)">Submit Project</button>
 			</div>
 		</div>
-	</form>
+	</div>
 </div>

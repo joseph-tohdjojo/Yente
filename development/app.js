@@ -1,4 +1,4 @@
-angular.module('yente', ['ui.router', 'ngFileUpload', 'ngImgCrop'])
+angular.module('yente', ['ui.router', 'masonry'])
 	.config(function($stateProvider, $urlRouterProvider) {
 
 		$urlRouterProvider.otherwise('/');
@@ -6,7 +6,9 @@ angular.module('yente', ['ui.router', 'ngFileUpload', 'ngImgCrop'])
 		$stateProvider
 			.state('home', {
 				url: '/',
-				templateUrl: 'views/home/home-tmpl.html'
+				templateUrl: 'views/home/home-tmpl.html',
+				controller: 'HomeController',
+				controllerAs: 'homeCtrl'
 			})
 			.state('talents', {
 				url:'/talents',
@@ -14,8 +16,21 @@ angular.module('yente', ['ui.router', 'ngFileUpload', 'ngImgCrop'])
 				controller: 'talentsController as talentsCtrl'
 			})
 			.state('project', {
-				url: '/project',
-				templateUrl: 'views/project/project-tmpl.html'
+				url: '/project/:id',
+				templateUrl: 'views/project/project-tmpl.html',
+				controller: 'ProjectController',
+				controllerAs: 'projectCtrl',
+				resolve: {
+					projectInfo: function($http, $stateParams) {
+						return $http.get('/api/project/getproject/' + $stateParams.id)
+							.then(function(success) {
+									return success;
+								},
+								function(error) {
+									return error;
+								});
+				  }
+				}
 			})
 			.state('profile', {
 				url: '/profile',
@@ -23,7 +38,19 @@ angular.module('yente', ['ui.router', 'ngFileUpload', 'ngImgCrop'])
 			})
 			.state('apply', {
 				url: '/apply',
-				templateUrl: 'views/apply/apply-tmpl.html'
+				templateUrl: 'views/apply/apply-tmpl.html',
+				controller: 'ApplyController',
+				controllerAs: 'applyCtrl',
+				resolve: {
+					getUserForApplication: function($http) {
+				    return $http({
+				      method: 'GET',
+				      url: '/api/user/getme'
+				    }).then(function(response) {
+				      return response.data;
+				    });
+				  }
+				}
 			})
 			.state('settings', {
 				url: '/settings',
@@ -32,7 +59,18 @@ angular.module('yente', ['ui.router', 'ngFileUpload', 'ngImgCrop'])
 			.state('addproject', {
 				url: '/addproject',
 				templateUrl: 'views/addproject/addproject-tmpl.html',
-				controller: 'addprojectCtrl'
+				controller: 'AddProjectController',
+				controllerAs: 'addProjectCtrl',
+				resolve: {
+					getUserForAddProject: function($http) {
+				    return $http({
+				      method: 'GET',
+				      url: '/api/user/getme'
+				    }).then(function(response) {
+				      return response.data;
+				    });
+				  }
+				}
 			});
 
 	});

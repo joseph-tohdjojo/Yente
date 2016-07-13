@@ -11,153 +11,74 @@ AWS.config.update({
 var s3 = new AWS.S3();
 
 module.exports = {
+	// auth: function(req, res, next) {
+	// 	if(req.isAuthenticated()) {
+	// 		return next();
+	// 	}
+	// 	res.status(401);
+	// },
 
 	passport: {
 		authLogin: function(username, password, done) {
-			User.findOne({ username: username }, function (err, user) {
-				if (err) { return done(err); }
-				if (!user) {
-					return done(null, false, { message: 'Incorrect username.' });
+		  User.findOne({ username: username })
+		  .exec(function(err, user) {
+		    if(err) done(err);
+		    if(!user) return done(null, false);
+		    if(user.verifyPassword(password)) {
+					return done(null, user);
 				}
-				if (user.password !== password) {
-					return done(null, false, { message: 'Incorrect password.' });
-				}
-				return done(null, user);
-			});
-		},
-		authSignup: function(username, password, done) {
-			User.create({username: username}, function(err, user) {
-				if(err) return done(err);
-				if(!user) return done(null, false);
-			});
-		},
-		serialize: function(user, done) {
-			done(null, user._id);
-		},
-		deserialize: function(id, done) {
-			User.findById(id, function(err, user) {
-				done(err, user);
-			});
+		    return done(null, false, { message: 'Invalid login credentials' });
+		  });
 		}
 	},
 
 	user: {
-		login: function (req, res, next) {
-		  passport.authenticate('local', function(err, user, info) {
-		    var error = err || info;
-		    if (error) return res.json(401, error);
-
-		    req.logIn(user, function(err) {
-
-		      if (err) return res.send(err);
-		      res.status(200).json(req.user);
-		    });
-		  })(req, res, next);
-		},
-		logout: function(req, res) {
-			req.logout();
-			res.redirect('/');
-		},
-		create: function(req, res) {
-			var newUser = new User(req.body);
-		  newUser.provider = 'local';
-
-		  newUser.save(function(err) {
-		    if (err) return res.json(400, err);
-
-		    req.logIn(newUser, function(err) {
-		      if (err) return next(err);
-
-		      return res.json(req.user.userInfo);
-		    });
-		  });
-		},
-		show: function (req, res, next) {
-		  var userId = req.params.id;
-
-		  User.findById(userId, function (err, user) {
-		    if (err) return next(new Error('Failed to load User'));
-
-		    if (user) {
-		      res.send({ profile: user.profile });
-		    } else {
-		      res.send(404, 'USER_NOT_FOUND');
-		    }
-		  });
-		},
-		me: function(req, res) {
-			res.status(200).json(req.user || null);
-		}
+		register: function(req, res, next) {
+	    User.create(req.body, function(err, result) {
+				console.log(err, result);
+	      if(err) return res.status(500).send(err);
+	      newUser = result.toObject();
+	      newUser.password = null;
+				next();
+	      // res.status(200).json(newUser);
+	    });
+	  },
+		getallusers: function(req, res, next) {
+	    User.find(req.query, function(err, result) {
+	      if (err) return res.status(500).send(err);
+	      for (var i = 0; i < result.length; i++) {
+	        delete result[i].password;
+	      }
+	      res.status(200).send(result);
+	    });
+	  },
+		me: function(req, res, next) {
+	    if (!req.user) {
+				return res.send('Invalid login credentials');
+			}
+	    req.user.password = null;
+	    return res.status(200).json(req.user);
+	  },
+		update: function(req, res, next) {
+	    User.findByIdAndUpdate(req.params._id, req.body, function(err, result) {
+	      if (err) next(err);
+	      res.status(200).send('user updated');
+	    });
+	  }
 	},
 
 	project: {
-		create: function(req, res) {
-			Project.create(req.body, function(e, r) {
-				if (e) {
-					res.status(500).json(e);
-				} else {
-					res.status(200).json(r);
-				}
-			});
-		},
-		show: function(req, res) {
-			Project.findOne(req.params.id, function(e, r) {
-				if (e) {
-					res.status(500).json(e);
-				} else {
-					res.status(200).json(r);
-				}
-			});
-		},
-		index: function(req, res) {
-			Project.find({}, function(e, r) {
-				if (e) {
-					res.status(500).json(e);
-				} else {
-					res.status(200).json(r);
-				}
-			});
-		},
-		update: function(req, res) {
-			var response = {};
-			Project.findById(req.params.id, function(e, r) {
-				if (e) {
-					res.status(500).json(e);
-				} else {
-					response = r;
-				}
-			});
-			Project.findByIdAndUpdate(req.params.id, {$set: req.body}, {upsert: true}, function(e, r) {
-				if (e) {
-					res.status(500).json(e);
-				} else {
-					res.status(200).json(r);
-				}
-			});
-		},
-		destroy: function(req, res) {
-			Project.findByIdAndRemove(req.params.id, function(e, r) {
-				if (e) {
-					res.status(500).json(e);
-				} else {
-					res.status(200).json(r);
-				}
-			});
-		}
-	},
-
-	images: {
-		postImage: function(req, res) {
-			// console.log(s3.endpoint);
-			var buf = new Buffer(req.body.imageBody.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+		addProject: function(req, res) {
+			var project = req.body;
+			var buf = new Buffer(project.image.imageBody.replace(/^data:image\/\w+;base64,/, ""), 'base64');
 
 		  // bucketName var below crates a "folder" for each user
-		  var bucketName = 'yente/' + req.body.userEmail;
+		  var bucketName = 'yente/' + project.image.userEmail;
 		  var params = {
 		    Bucket: bucketName,
-		    Key: req.body.imageName,
+		    Key: project.image.imageName,
 		    Body: buf,
-		    ContentType: 'image/' + req.body.imageExtension,
+		    ContentType: 'image/' + project.image.imageExtension,
 		    ACL: 'public-read'
 		  };
 		  s3.upload(params, function (err, data) {
@@ -167,9 +88,68 @@ module.exports = {
 
 
 		    // TODO: save data to mongo
-				console.log(data);
+				Project.create({
+					title: project.title,
+					description: project.description,
+					projectUrl: project.projectUrl,
+					projectImageUrl: data.Location,
+					creator: project.creator,
+				}, function(e, r) {
+					if(e) {
+						res.status(500).json(e);
+					} else {
+						res.status(200).json(r);
+					}
+				});
 		  });
+		},
+		getProject: function(req, res) {
+			Project.findById({ _id: req.params.id })
+				.populate('creator')
+				.exec(function(err, project) {
+					if(err) {
+						res.status(500).json(err);
+					} else {
+						res.status(200).json(project);
+					}
+				});
+		},
+		getAllProjects: function(req, res) {
+			Project
+				.find({})
+				.populate({path: 'creator'})
+				.exec(function(err, projects) {
+					if (err) {
+						res.status(500).json(err);
+					} else {
+						res.status(200).json(projects);
+					}
+				});
+				// .find({})
+				// .sort('dateAdded')
+				// .limit(20)
+				// .exec(function(err, users) {
+				// 	if(err) {
+				// 		res.send(err);
+				// 	} else {
+				// 		res.status(200).send(users);
+				// 	}
+				// });
+		},
+		getProjectsByOwner: function(req, res) {
+			Project.find({ 'creator': req.params.id }, function(err, projects) {
+				if (err) {
+					res.status(500).json(err);
+				} else {
+					res.status(200).json(projects);
+				}
+			});
+		},
+		updateProject: function(req, res) {
+
+		},
+		acceptProject: function(req, res) {
+
 		}
 	}
-
 };

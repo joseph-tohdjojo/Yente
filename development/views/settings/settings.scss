@@ -1,0 +1,9 @@
+body {
+	ui-view {
+		.settings-title {
+			h2 {
+				font-family: $logo-stack;
+			}
+		}
+	}
+}

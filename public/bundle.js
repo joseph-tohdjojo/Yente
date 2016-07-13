@@ -1,30 +1,66 @@
-angular.module('yente', ['ui.router', 'ngFileUpload', 'ngImgCrop']).config(function ($stateProvider, $urlRouterProvider) {
+angular.module('yente', ['ui.router', 'masonry']).config(function ($stateProvider, $urlRouterProvider) {
 
 	$urlRouterProvider.otherwise('/');
 
 	$stateProvider.state('home', {
 		url: '/',
-		templateUrl: 'views/home/home-tmpl.html'
+		templateUrl: 'views/home/home-tmpl.html',
+		controller: 'HomeController',
+		controllerAs: 'homeCtrl'
 	}).state('talents', {
 		url: '/talents',
 		templateUrl: 'views/talents/talents-tmpl.html',
 		controller: 'talentsController as talentsCtrl'
 	}).state('project', {
-		url: '/project',
-		templateUrl: 'views/project/project-tmpl.html'
+		url: '/project/:id',
+		templateUrl: 'views/project/project-tmpl.html',
+		controller: 'ProjectController',
+		controllerAs: 'projectCtrl',
+		resolve: {
+			projectInfo: function ($http, $stateParams) {
+				return $http.get('/api/project/getproject/' + $stateParams.id).then(function (success) {
+					return success;
+				}, function (error) {
+					return error;
+				});
+			}
+		}
 	}).state('profile', {
 		url: '/profile',
 		templateUrl: 'views/profile/profile-tmpl.html'
 	}).state('apply', {
 		url: '/apply',
-		templateUrl: 'views/apply/apply-tmpl.html'
+		templateUrl: 'views/apply/apply-tmpl.html',
+		controller: 'ApplyController',
+		controllerAs: 'applyCtrl',
+		resolve: {
+			getUserForApplication: function ($http) {
+				return $http({
+					method: 'GET',
+					url: '/api/user/getme'
+				}).then(function (response) {
+					return response.data;
+				});
+			}
+		}
 	}).state('settings', {
 		url: '/settings',
 		templateUrl: 'views/settings/settings-tmpl.html'
 	}).state('addproject', {
 		url: '/addproject',
 		templateUrl: 'views/addproject/addproject-tmpl.html',
-		controller: 'addprojectCtrl'
+		controller: 'AddProjectController',
+		controllerAs: 'addProjectCtrl',
+		resolve: {
+			getUserForAddProject: function ($http) {
+				return $http({
+					method: 'GET',
+					url: '/api/user/getme'
+				}).then(function (response) {
+					return response.data;
+				});
+			}
+		}
 	});
 });
 angular.module('yente').controller('MainController', function ($scope, usersService) {
@@ -37,58 +73,134 @@ angular.module('yente').controller('MainController', function ($scope, usersServ
 	// }
 
 });
-angular.module('yente').service('imagesService', function ($http) {
+angular.module("yente").service("authService", function ($http) {
 
-		this.storeImage = function (projectTitle, projectUrl, projectDescription, imageData, fileName) {
-				var imageExtension = imageData.split(';')[0].split('/');
-				imageExtension = imageExtension[imageExtension.length - 1];
-				var data = {
-						newProject: {
-								title: projectTitle,
-								url: projectUrl,
-								description: projectDescription,
-								image: {
-										imageName: fileName,
-										imageBody: imageData,
-										imageExtension: imageExtension,
-										userEmail: 'obama@usa.gov'
-								}
-						}
-				};
+	this.login = function (user) {
+		return $http({
+			method: 'post',
+			url: '/api/user/login',
+			data: user
+		}).then(function (response) {
+			return response;
+		});
+	};
 
-				return $http.post('/api/images/newimage', newImage);
-		};
-});
-angular.module('yente').service('projectService', function ($http) {});
-angular.module('yente').service('usersService', function ($http, $state) {
-	var user = false;
+	this.logout = function () {
+		return $http({
+			method: 'get',
+			url: '/api/user/logout'
+		}).then(function (success) {
+			return success;
+		}, function (error) {
+			alert('Wrong credentials');
+		});
+	};
 
-	this.checkForSession = function () {
+	this.getCurrentUser = function () {
 		return $http({
 			method: 'GET',
-			url: '/api/user/currentuser'
+			url: '/api/user/getme'
 		}).then(function (response) {
 			return response.data;
 		});
 	};
 
-	this.login = function (loginUsername, loginPassword) {
-		var credentials = {
-			username: loginUsername,
-			password: loginPassword
-		};
+	this.registerUser = function (user) {
 		return $http({
 			method: 'POST',
-			url: '/api/user/login',
-			data: credentials
-		}).then(function (success) {
-			user = success.data;
-			return user;
-		}, function (error) {
-			$state.go('apply');
-			return error.data;
+			url: '/api/user/register',
+			data: user
+		}).then(function (response) {
+			return response.data;
 		});
 	};
+
+	this.editUser = function (id, user) {
+		return $http({
+			method: 'PUT',
+			url: "/api/user/" + id,
+			data: user
+		}).then(function (response) {
+			return response;
+		});
+	};
+});
+angular.module('yente').service('imagesService', function ($http) {});
+angular.module('yente').service('projectsService', function ($http) {
+	var projectsService = this;
+
+	projectsService.getProject = function (id) {
+		return $http.get('/api/project/getproject/' + id).then(function (success) {
+			return success;
+		}, function (error) {
+			return error;
+		});
+	};
+
+	projectsService.getAllProjects = function () {
+		return $http.get('/api/project/getprojects').then(function (response) {
+			return response.data;
+		});
+	};
+
+	projectsService.getProjectsByOwner = function (ownerId) {
+		return $http.get('/api/project/getprojects/' + ownerId).then(function (response) {
+			return response.data;
+		});
+	};
+
+	projectsService.storeImage = function (user, projectTitle, projectUrl, projectDescription, imageData, fileName) {
+		var imageExtension = imageData.split(';')[0].split('/');
+		imageExtension = imageExtension[imageExtension.length - 1];
+
+		var newProject = {
+			title: projectTitle,
+			description: projectDescription,
+			projectUrl: projectUrl,
+			creator: user._id,
+			image: {
+				imageName: fileName,
+				imageBody: imageData,
+				imageExtension: imageExtension,
+				userEmail: user.email
+			}
+		};
+
+		return $http.post('/api/project/addproject', newProject).then(function (response) {
+			return response.data;
+		});
+	};
+});
+angular.module("yente").service("usersService", function ($http) {
+
+	this.getUsers = function () {
+		return $http({
+			method: 'GET',
+			url: '/user'
+		}).then(function (response) {
+			return response;
+		});
+	};
+
+	this.getUser = function (id) {
+		return $http({
+			method: 'GET',
+			url: '/user?_id=' + id
+		}).then(function (response) {
+			return response;
+		});
+	};
+
+	// Not Needed
+	//
+	// this.deleteUser = function(id) {
+	//   return $http({
+	//     method: 'DELETE',
+	//     url: '/user/' + id
+	//   }).then(function(response) {
+	//     return response;
+	//   });
+	// };
 });
 angular.module('yente').controller('projectGridController', function ($scope, $state, $rootScope) {
 	$scope.goToProject = function (_id) {
@@ -438,39 +550,74 @@ angular.module('yente').component('projectGrid', {
 	templateUrl: './components/projectgrid/projectgrid-tmpl.html',
 	controller: 'projectGridController'
 });
-angular.module('yente').controller('SideNavController', function ($scope, $state, usersService) {
+angular.module('yente').controller('UserCardController', function ($scope) {});
+angular.module('yente').directive('userCard', function () {
+	return {
+		restrict: 'E',
+		templateUrl: './components/usercard/usercard-tmpl.html',
+		scope: false,
+		controller: 'UserCardController',
+		controllerAs: 'userCardCtrl'
+	};
+});
+angular.module('yente').controller('SideNavController', function ($scope, $state, authService, usersService, $stateParams, projectsService) {
 	var sideNavCtrl = this;
-	function reset() {
-		$('.login-form').slideUp('fast');
-		$('.user-menu').slideUp('fast');
-	}
 
-	usersService.checkForSession().then(function (response) {
-		if (response) {
-			sideNavCtrl.user = response;
-		} else {
-			sideNavCtrl.user = false;
-		}
+	authService.getCurrentUser().then(function (response) {
+		sideNavCtrl.user = response;
 	});
 
 	sideNavCtrl.login = function (loginUsername, loginPassword) {
-		usersService.login(loginUsername, loginPassword).then(function (user) {
-			sideNavCtrl.user = user;
+		if (loginUsername && loginPassword) {
+			var user = {
+				username: loginUsername,
+				password: loginPassword
+			};
+			authService.login(user).then(function (response) {
+				sideNavCtrl.user = response.data;
+				if ($state.includes('apply')) {
+					$state.go('home');
+				}
+			});
+			sideNavCtrl.loginUsername = '';
+			sideNavCtrl.loginPassword = '';
+		}
+	};
+
+	sideNavCtrl.logout = function () {
+		authService.logout().then(function (response) {
+			if (response.status === 200) {
+				sideNavCtrl.user = false;
+				$state.go('home');
+			} else {
+				alert('Failed to log out.');
+			}
 		});
 	};
 
-	$('.login').on('click', function () {
+	sideNavCtrl.slideLoginMenu = function () {
 		$('.login-form').slideToggle('fast');
-	});
+	};
 
-	$('.username').on('click', function () {
+	sideNavCtrl.slideUserMenu = function () {
 		$('.user-menu').slideToggle('fast');
-	});
+	};
 
 	$scope.$on('$stateChangeSuccess', function () {
+		authService.getCurrentUser().then(function (response) {
+			sideNavCtrl.user = response;
+		});
+
 		if (!$state.includes('project')) {
 			$('.project-info').slideUp('fast');
 		} else {
+			projectsService.getProject($stateParams.id).then(function (results) {
+				if (results.status === 200) {
+					sideNavCtrl.projUrl = results.data.projectUrl;
+					sideNavCtrl.projTitle = results.data.title;
+					sideNavCtrl.projDesc = results.data.description;
+				}
+			});
 			$('.project-info').slideDown('fast');
 		}
 
@@ -488,75 +635,122 @@ angular.module('yente').component('sideNav', {
 	controller: 'SideNavController',
 	controllerAs: 'sideNavCtrl'
 });
-angular.module('yente').controller('userCardController', function ($scope) {});
-angular.module('yente').component('userCard', {
-	templateUrl: './components/usercard/usercard-tmpl.html',
-	controller: 'userCardController',
-	controllerAs: 'vm',
-	bindings: { user: '<' }
-});
 angular.module('yente').directive('fileread', function (imagesService) {
-	return {
-		restrict: 'A',
-		scope: { projectPicture: '&' },
-		link: function (scope, elem, attrs) {
-			elem.bind("change", function (changeEvent) {
-				console.log(elem.context);
+					return {
+										restrict: 'A',
+										scope: { projectPicture: '&' },
+										link: function (scope, elem, attrs) {
+															elem.bind("change", function (changeEvent) {
+																				var reader = new FileReader();
+																				reader.onload = function (loadEvent) {
+																									$('.preview').hide();
+																									$('.preview').attr('src', loadEvent.target.result);
+																									$('.preview').slideDown('fast');
+																									var fileread = loadEvent.target.result;
+																									var tempArray = elem[0].value.split('\\');
+																									var fileName = tempArray[tempArray.length - 1];
+																									var obj = {
+																														fileread: fileread,
+																														fileName: fileName
+																									};
+																									scope.projectPicture(obj);
+																				};
 
-				var reader = new FileReader();
-				reader.onload = function (loadEvent) {
-					var fileread = loadEvent.target.result;
-					var tempArray = elem[0].value.split('\\');
-					var fileName = tempArray[tempArray.length - 1];
-					var obj = {
-						fileread: fileread,
-						fileName: fileName
+																				reader.readAsDataURL(changeEvent.target.files[0]);
+															});
+										}
 					};
-					projectPicture(obj);
-				};
-
-				reader.readAsDataURL(changeEvent.target.files[0]);
-			});
-		}
-	};
 });
-angular.module('yente').controller('addprojectCtrl', function ($scope, Upload, $timeout, imagesService) {
+angular.module('yente').controller('AddProjectController', function ($scope, $state, projectsService, authService, usersService, getUserForAddProject, $timeout) {
+	var addProjectCtrl = this;
 	var picInfo = {};
+	if (getUserForAddProject) {
+		addProjectCtrl.user = getUserForAddProject;
+	} else {
+		$state.go('home');
+	}
 
-	$scope.projectPicture = function (fileread, fileName) {
+	addProjectCtrl.projectPicture = function (fileread, fileName) {
 		picInfo = {
 			fileread: fileread,
 			fileName: fileName
 		};
-		if (picInfo.fileread) {
-			$scope.active = true;
+	};
+
+	addProjectCtrl.submitProject = function (projectTitle, projectUrl, projectDescription) {
+		projectUrl = 'http://' + projectUrl;
+		var user = addProjectCtrl.user;
+		projectsService.storeImage(user, projectTitle, projectUrl, projectDescription, picInfo.fileread, picInfo.fileName).then(function (result) {
+			$state.go('project', { id: result._id });
+		});
+	};
+});
+angular.module('yente').controller('ApplyController', function ($scope, $state, authService, getUserForApplication) {
+	var applyCtrl = this;
+
+	if (getUserForApplication) {
+		$state.go('home');
+	}
+
+	applyCtrl.register = function (username, password, firstName, lastName, email, city, state, bio) {
+		var user = {
+			firstName: firstName,
+			lastName: lastName,
+			bio: bio,
+			username: username,
+			password: password,
+			email: email,
+			city: city,
+			state: state.toUpperCase()
+		};
+		authService.registerUser(user).then(function (results) {
+			applyCtrl.user = results;
+			$state.go('home');
+		});
+	};
+});
+angular.module('yente').controller('HomeController', function ($scope, projectsService) {
+
+	function shuffle(array) {
+		var currentIndex = array.length,
+		    temporaryValue,
+		    randomIndex;
+
+		// While there remain elements to shuffle...
+		while (0 !== currentIndex) {
+
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
 		}
-	};
 
-	$scope.postProject = function () {
-		imagesService.storeImage(projectTitle, projectUrl, projectDescription, picInfo.fileread, picInfo.fileName).then(function (result) {
-			scope.images.unshift(result.data);
-		});
-	};
+		return array;
+	}
 
-	$scope.upload = function (dataUrl, name) {
-		Upload.upload({
-			url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-			data: {
-				file: Upload.dataUrltoBlob(dataUrl, name)
-			}
-		}).then(function (response) {
-			$timeout(function () {
-				$scope.result = response.data;
-			});
-		}, function (response) {
-			if (response.status > 0) {
-				$scope.errorMsg = response.status + ': ' + response.data;
-			}
-		}, function (evt) {
-			$scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+	var homeCtrl = this;
+
+	projectsService.getAllProjects().then(function (results) {
+		results = shuffle(results);
+		homeCtrl.projects = results;
+	});
+});
+angular.module('yente').controller('ProjectController', function ($scope, $sce, $stateParams, $state, projectInfo, projectsService) {
+	var projectCtrl = this;
+
+	if (projectInfo.status === 200) {
+		projectCtrl.projUrl = '';
+		projectCtrl.projInfo = projectInfo.data;
+		projectsService.getProjectsByOwner(projectInfo.data.creator._id).then(function (results) {
+			projectCtrl.otherProjects = results;
 		});
-	};
+	} else {
+		$state.go('home');
+	}
 });
 angular.module('yente').controller('talentsController', function ($scope, usersService) {
 

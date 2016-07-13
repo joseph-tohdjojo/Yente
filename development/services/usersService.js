@@ -1,35 +1,32 @@
-angular.module('yente')
-	.service('usersService', function($http, $state) {
-		var user = false;
+angular.module("yente")
+	.service("usersService", function($http) {
 
-		this.checkForSession = function() {
-			return $http({
-				method: 'GET',
-				url: '/api/user/currentuser',
-			}).then(function(response) {
-				return response.data;
-			});
-		};
+	  this.getUsers = function() {
+	    return $http({
+	      method: 'GET',
+	      url: '/user'
+	    }).then(function(response) {
+	      return response;
+	    });
+	  };
 
-		this.login = function(loginUsername, loginPassword) {
-			var credentials = {
-				username: loginUsername,
-				password: loginPassword
-			};
-			return $http({
-				method: 'POST',
-				url: '/api/user/login',
-				data: credentials
-			}).then(
-				function(success) {
-					user = success.data;
-					return user;
-				},
-				function(error) {
-					$state.go('apply');
-					return error.data;
-				}
-			);
-		};
+	  this.getUser = function(id) {
+	    return $http({
+	      method: 'GET',
+	      url: '/user?_id=' + id
+	    }).then(function(response) {
+	      return response;
+	    });
+	  };
 
+	  // Not Needed
+	  //
+	  // this.deleteUser = function(id) {
+	  //   return $http({
+	  //     method: 'DELETE',
+	  //     url: '/user/' + id
+	  //   }).then(function(response) {
+	  //     return response;
+	  //   });
+	  // };
 	});

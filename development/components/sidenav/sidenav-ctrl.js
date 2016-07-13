@@ -1,42 +1,67 @@
 angular.module('yente')
-	.controller('SideNavController', function($scope, $state, usersService) {
+	.controller('SideNavController', function($scope, $state, authService, usersService, $stateParams, projectsService) {
 		var sideNavCtrl = this;
-		function reset() {
-			$('.login-form').slideUp('fast');
-			$('.user-menu').slideUp('fast');
-		}
 
-		usersService.checkForSession()
+		authService.getCurrentUser()
 			.then(function(response) {
-				if(response) {
-					sideNavCtrl.user = response;
-				}
-				else {
-					sideNavCtrl.user = false;
-				}
+				sideNavCtrl.user = response;
 			});
 
-
-
 		sideNavCtrl.login = function(loginUsername, loginPassword) {
-			usersService.login(loginUsername, loginPassword)
-				.then(function(user) {
-					sideNavCtrl.user = user;
+			if(loginUsername && loginPassword) {
+				var user = {
+					username: loginUsername,
+					password: loginPassword
+				};
+				authService.login(user)
+					.then(function(response) {
+						sideNavCtrl.user = response.data;
+						if($state.includes('apply')) {
+							$state.go('home');
+						}
+					});
+				sideNavCtrl.loginUsername = '';
+				sideNavCtrl.loginPassword = '';
+			}
+		};
+
+		sideNavCtrl.logout = function() {
+			authService.logout()
+				.then(function(response) {
+					if(response.status === 200) {
+						sideNavCtrl.user = false;
+						$state.go('home');
+					} else {
+						alert('Failed to log out.');
+					}
 				});
 		};
 
-		$('.login').on('click', function() {
+		sideNavCtrl.slideLoginMenu = function() {
 			$('.login-form').slideToggle('fast');
-		});
+		};
 
-		$('.username').on('click', function() {
+		sideNavCtrl.slideUserMenu = function() {
 			$('.user-menu').slideToggle('fast');
-		});
+		};
 
 		$scope.$on('$stateChangeSuccess', function() {
+			authService.getCurrentUser()
+				.then(function(response) {
+					sideNavCtrl.user = response;
+				});
+
 			if(!$state.includes('project')) {
 				$('.project-info').slideUp('fast');
 			} else {
+				projectsService.getProject($stateParams.id)
+					.then(function(results) {
+						if(results.status === 200) {
+							sideNavCtrl.projUrl = results.data.projectUrl;
+							sideNavCtrl.projTitle = results.data.title;
+							sideNavCtrl.projDesc = results.data.description;
+						}
+					});
 				$('.project-info').slideDown('fast');
 			}
 

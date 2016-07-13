@@ -13,7 +13,7 @@ var autoprefixer = require('autoprefixer');
 // DECLARE FILE PATHS
 // ============================================================
 var paths = {
-  jsSource: ['./development/app.js', './development/mainCtrl.js', 'development/**/*.js'],
+  jsSource: ['./development/app.js', './development/angulargrid.js', './development/mainCtrl.js', 'development/**/*.js'],
   sassSource: ['./development/styles/reset.scss', './development/styles/main.scss', 'development/**/*.scss'],
 	htmlSource: ['./development/index.html', 'development/**/*.html']
 };

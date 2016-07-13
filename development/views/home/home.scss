@@ -1,17 +1,93 @@
-.about {
-	width: 40%;
-	margin: 0 auto 3rem;
-	p {
-		font-family: $mono-stack;
-		font-size: 0.9rem;
-		line-height: 1.2rem;
-		text-align: center;
-		letter-spacing: 0.1rem;
-		b {
-			font-weight: 600;
+body {
+	ui-view {
+		.about {
+			width: 40%;
+			margin: 0 auto 3rem;
+			p {
+				font-family: $mono-stack;
+				font-size: 0.9rem;
+				line-height: 1.2rem;
+				text-align: center;
+				letter-spacing: 0.1rem;
+				b {
+					font-weight: 600;
+				}
+				i {
+					background-color: yellow;
+				}
+			}
 		}
-		i {
-			background-color: yellow;
+
+		.grid {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-start;
+			flex-wrap: wrap;
+			.gutter-sizer {
+				width: 2.5%;
+			}
+			.grid-sizer,
+			.project {
+				width: 23%;
+				box-sizing: border-box;
+				cursor: pointer;
+				color: #aaa;
+				font-size: 13px;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				margin-bottom: 3rem;
+				.project-browser {
+					box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.3);
+					border-radius: 0.4rem 0.4rem 0 0;
+					margin-bottom: 0.5rem;
+					overflow: hidden;
+					.browser-top {
+						width: 100%;
+						height: 1rem;
+						background: #e0e0e0;
+						border-radius: 0.4rem 0.4rem 0 0;
+						.browser-btns {
+							width: 2rem;
+							height: 100%;
+							margin-left: 0.5rem;
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+							.btn {
+								width: 0.4rem;
+								height: 0.4rem;
+								border-radius: 1rem;
+								background-color: #AAA;
+							}
+							.red { background-color: hsla(358, 67%, 64%, 0.4); }
+							.yellow { background-color: hsla(31, 77%, 65%, 0.4); }
+							.green { background-color: hsla(147, 28%, 49%, 0.4); }
+						}
+					}
+					img {
+						width: 100%;
+						background-color: #888;
+					}
+				}
+				.project-browser:hover {
+					box-shadow: 1px 1px 16px 0px rgba(0,0,0,0.3);
+				}
+				p {
+					font-family: $mono-stack;
+					font-weight: bold;
+					width: 100%;
+					text-align: right;
+				}
+			}
+			.project:hover {
+				p {
+					color: #000;
+				}
+			}
 		}
+
 	}
 }

@@ -1,6 +1,34 @@
 body {
 	ui-view {
 		height: auto;
+		.modal {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background-color: hsla(0, 0%, 20%, 0.4);
+			z-index: 200;
+			display: none;
+			.modal-container {
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				.inner-container {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					padding: 3rem;
+					background-color: #CCC;
+					p {
+						color: black;
+					}
+				}
+			}
+		}
 		.addproject-wrapper {
 			display: flex;
 			flex-direction: column;
@@ -10,7 +38,7 @@ body {
 				font-size: 3rem;
 				margin-bottom: 4rem;
 			}
-			form {
+			> .form {
 				width: 100%;
 				display: flex;
 				flex-direction: column;
@@ -53,38 +81,24 @@ body {
 					h4 {
 						font-family: $logo-stack;
 						font-size: 2rem;
-						margin-bottom: 0.5rem;
+						margin-bottom: 1rem;
 					}
 					.button-wrapper {
 						display: flex;
-						flex-direction: row;
+						flex-direction: column;
 						justify-content: flex-start;
-						button {
+						.choose-file {
+							margin-bottom: 2rem;
+						}
+						.preview {
+							width: 30rem;
+							margin-bottom: 2rem;
+						}
+						.project-submit {
 							width: 20%;
 							height: 2rem;
 							margin-right: 1rem;
 						}
-					}
-					span {
-						font-size: 0.8rem;
-						font-weight: lighter;
-						margin-bottom: 0.8rem;
-					}
-					.progress {
-				    display: inline-block;
-				    width: 100px;
-				    border: 1px solid hsla(210, 3%, 75%, 1);
-						div {
-							font-size: smaller;
-					    background: hsla(210, 3%, 75%, 1);
-					    width: 0;
-						}
-					}
-					.cropArea {
-				    background: #E4E4E4;
-				    overflow: hidden;
-				    width:500px;
-				    height:350px;
 					}
 				}
 			}
