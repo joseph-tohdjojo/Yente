@@ -10,7 +10,8 @@ angular.module('yente', ['ui.router', 'masonry']).config(function ($stateProvide
 	}).state('talents', {
 		url: '/talents',
 		templateUrl: 'views/talents/talents-tmpl.html',
-		controller: 'talentsController as talentsCtrl'
+		controller: 'TalentsController',
+		controllerAs: 'talentsCtrl'
 	}).state('project', {
 		url: '/project/:id',
 		templateUrl: 'views/project/project-tmpl.html',
@@ -149,6 +150,12 @@ angular.module('yente').service('projectsService', function ($http) {
 		});
 	};
 
+	projectsService.getSomeProjectsByOwner = function (ownerId) {
+		return $http.get('/api/project/getsomeprojects/' + ownerId).then(function (response) {
+			return response.data;
+		});
+	};
+
 	projectsService.storeImage = function (user, projectTitle, projectUrl, projectDescription, imageData, fileName) {
 		var imageExtension = imageData.split(';')[0].split('/');
 		imageExtension = imageExtension[imageExtension.length - 1];
@@ -171,14 +178,24 @@ angular.module('yente').service('projectsService', function ($http) {
 		});
 	};
 });
-angular.module("yente").service("usersService", function ($http) {
+angular.module("yente").service("usersService", function ($http, projectsService) {
 
-	this.getUsers = function () {
+	this.getAllUsers = function () {
 		return $http({
 			method: 'GET',
-			url: '/user'
+			url: '/api/users'
 		}).then(function (response) {
-			return response;
+
+			for (var i = 0; i < response.data.length; i++) {
+				var id = response.data[i]._id;
+
+				(function (iter) {
+					projectsService.getProjectsByOwner(id).then(function (results) {
+						response.data[iter].projects = results;
+					});
+				})(i);
+			}
+			return response.data;
 		});
 	};
 
@@ -550,16 +567,6 @@ angular.module('yente').component('projectGrid', {
 	templateUrl: './components/projectgrid/projectgrid-tmpl.html',
 	controller: 'projectGridController'
 });
-angular.module('yente').controller('UserCardController', function ($scope) {});
-angular.module('yente').directive('userCard', function () {
-	return {
-		restrict: 'E',
-		templateUrl: './components/usercard/usercard-tmpl.html',
-		scope: false,
-		controller: 'UserCardController',
-		controllerAs: 'userCardCtrl'
-	};
-});
 angular.module('yente').controller('SideNavController', function ($scope, $state, authService, usersService, $stateParams, projectsService) {
 	var sideNavCtrl = this;
 
@@ -661,6 +668,16 @@ angular.module('yente').directive('fileread', function (imagesService) {
 										}
 					};
 });
+angular.module('yente').controller('UserCardController', function ($scope) {});
+angular.module('yente').directive('userCard', function () {
+	return {
+		restrict: 'E',
+		templateUrl: './components/usercard/usercard-tmpl.html',
+		scope: false,
+		controller: 'UserCardController',
+		controllerAs: 'userCardCtrl'
+	};
+});
 angular.module('yente').controller('AddProjectController', function ($scope, $state, projectsService, authService, usersService, getUserForAddProject, $timeout) {
 	var addProjectCtrl = this;
 	var picInfo = {};
@@ -742,23 +759,25 @@ angular.module('yente').controller('HomeController', function ($scope, projectsS
 angular.module('yente').controller('ProjectController', function ($scope, $sce, $stateParams, $state, projectInfo, projectsService) {
 	var projectCtrl = this;
 
+	if (projectInfo.data.accepted) {
+		projectCtrl.underReview = false;
+	} else {
+		projectCtrl.underReview = true;
+	}
+
 	if (projectInfo.status === 200) {
 		projectCtrl.projUrl = '';
 		projectCtrl.projInfo = projectInfo.data;
 		projectsService.getProjectsByOwner(projectInfo.data.creator._id).then(function (results) {
 			projectCtrl.otherProjects = results;
 		});
-	} else {
-		$state.go('home');
-	}
+	} else {}
 });
-angular.module('yente').controller('talentsController', function ($scope, usersService) {
+angular.module('yente').controller('TalentsController', function ($scope, usersService) {
 
-	var thisCtrl = this;
+	var talentsCtrl = this;
 
-	usersService.getUsers().then(function (resp) {
-		thisCtrl.users = resp;
+	usersService.getAllUsers().then(function (response) {
+		talentsCtrl.users = response;
 	});
-
-	thisCtrl.hello = 'hello';
 });

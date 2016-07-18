@@ -1,13 +1,11 @@
 angular.module('yente')
-	.controller('talentsController', function($scope, usersService) {
+	.controller('TalentsController', function($scope, usersService) {
 
-		var thisCtrl = this;
+		var talentsCtrl = this;
 
-		usersService.getUsers()
-			.then(function(resp) {
-				thisCtrl.users = resp;
+		usersService.getAllUsers()
+			.then(function(response) {
+				talentsCtrl.users = response;
 			});
-
-		thisCtrl.hello = 'hello';
 
 	});

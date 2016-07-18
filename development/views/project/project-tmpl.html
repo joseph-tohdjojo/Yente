@@ -1,3 +1,8 @@
+<div class="under-review" ng-if="projectCtrl.underReview">
+	<div class="message">
+		<h3>This project is still under review and is unlisted.</h3>
+	</div>
+</div>
 <div class="project-browser" style="min-width: 0">
 	<div class="browser-top">
 		<div class="browser-btns">
@@ -11,5 +16,31 @@
 	</div>
 	<div class="browser-bottom"></div>
 </div>
+
 <div class="line" style=""></div>
-<user-card style="min-width: 0"></user-card>
+
+<div class="user-card">
+	<div class="user-info">
+		<div class="user">
+			<div class="avatar">
+				<img ng-src="{{projectCtrl.projInfo.creator.avatar}}" alt="">
+			</div>
+			<div class="info">
+				<h3>{{projectCtrl.projInfo.creator.firstName}} {{projectCtrl.projInfo.creator.lastName}}</h3>
+				<h4>{{projectCtrl.projInfo.creator.city}}, {{projectCtrl.projInfo.creator.state}}</h4>
+				<p>{{projectCtrl.projInfo.creator.bio}}</p>
+				<div class="links">
+					<a class="icon email" href="mailto:{{projectCtrl.projInfo.creator.email}}?Subject=Hi,%20I%20found%20you%20on%20Yente%20" target="_top"><i data-icon="c"></i></a>
+					<a class="icon follow" href="{{projectCtrl.projInfo.creator.github}}" target="_blank"><i data-icon="a"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="projects">
+			<div class="container">
+			<div class="project-container" ng-repeat="proj in projectCtrl.otherProjects" ui-sref="project({id: proj._id})">
+				<img ng-src="{{proj.projectImageUrl}}" alt="">
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,12 +1,23 @@
 angular.module("yente")
-	.service("usersService", function($http) {
+	.service("usersService", function($http, projectsService) {
 
-	  this.getUsers = function() {
+	  this.getAllUsers = function() {
 	    return $http({
 	      method: 'GET',
-	      url: '/user'
+	      url: '/api/users'
 	    }).then(function(response) {
-	      return response;
+
+				for (var i = 0; i < response.data.length; i++) {
+					var id = response.data[i]._id;
+
+					(function(iter){
+						projectsService.getProjectsByOwner(id)
+							.then(function(results) {
+								response.data[iter].projects = results;
+							})
+					})(i)
+				}
+				return response.data;
 	    });
 	  };
 

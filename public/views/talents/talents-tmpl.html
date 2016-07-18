@@ -1,5 +1,6 @@
+
 <div class="card" ng-repeat="user in talentsCtrl.users">
-	<!-- <div class="user-card">
+	<div class="user-card">
 		<div class="user-info">
 			<div class="avatar">
 				<img ng-src="{{user.avatar}}" alt="">
@@ -13,14 +14,12 @@
 					<a class="icon follow" href="{{user.github}}" target="_blank"><i data-icon="a"></i></a>
 				</div>
 			</div>
-			</div>
-			<div class="projects">
-			<div class="project-browser" ng-repeat="link in user.links">
-				<img ng-src="{{link}}" alt="">
+		</div>
+		<div class="projects">
+			<div class="project-container" ng-repeat="project in user.projects"  ui-sref="project({id: project._id})">
+				<img ng-src="{{project.projectImageUrl}}" alt="">
 			</div>
 		</div>
-	</div> -->
-
-	<user-card user="user"></user-card>
+	</div>
 	<line></line>
 </div>

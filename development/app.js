@@ -13,7 +13,8 @@ angular.module('yente', ['ui.router', 'masonry'])
 			.state('talents', {
 				url:'/talents',
 				templateUrl: 'views/talents/talents-tmpl.html',
-				controller: 'talentsController as talentsCtrl'
+				controller: 'TalentsController',
+				controllerAs: 'talentsCtrl'
 			})
 			.state('project', {
 				url: '/project/:id',

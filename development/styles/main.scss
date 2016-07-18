@@ -10,7 +10,7 @@ body {
 		position: fixed;
 	}
 	ui-view {
-		width: 100%;
+		width: calc(100% - 14rem);
 		margin-left: 14rem;
 		padding: 3rem;
 		box-sizing: border-box;

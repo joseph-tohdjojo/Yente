@@ -43,14 +43,14 @@ module.exports = {
 	      // res.status(200).json(newUser);
 	    });
 	  },
-		getallusers: function(req, res, next) {
-	    User.find(req.query, function(err, result) {
-	      if (err) return res.status(500).send(err);
-	      for (var i = 0; i < result.length; i++) {
-	        delete result[i].password;
-	      }
-	      res.status(200).send(result);
-	    });
+		getAllUsers: function(req, res, next) {
+	    User
+				.find({})
+				// .select('_id')
+				.exec(function(err, result) {
+		      if (err) return res.status(500).send(err);
+		      res.status(200).send(result);
+		    });
 	  },
 		me: function(req, res, next) {
 	    if (!req.user) {
@@ -98,6 +98,7 @@ module.exports = {
 					if(e) {
 						res.status(500).json(e);
 					} else {
+
 						res.status(200).json(r);
 					}
 				});
@@ -116,7 +117,7 @@ module.exports = {
 		},
 		getAllProjects: function(req, res) {
 			Project
-				.find({})
+				.find({ 'accepted': true })
 				.populate({path: 'creator'})
 				.exec(function(err, projects) {
 					if (err) {
@@ -137,7 +138,7 @@ module.exports = {
 				// });
 		},
 		getProjectsByOwner: function(req, res) {
-			Project.find({ 'creator': req.params.id }, function(err, projects) {
+			Project.find({ 'creator': req.params.id, 'accepted': true }, function(err, projects) {
 				if (err) {
 					res.status(500).json(err);
 				} else {

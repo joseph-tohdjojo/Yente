@@ -24,7 +24,7 @@ var isAdmin = function(req, res, next) {
 }
 
 var app = express();
-var port = 4444;
+var port = 8080;
 
 mongoose.connect('mongodb://localhost/yente');
 
@@ -67,7 +67,7 @@ app.get('/api/user/logout', function(req, res, next) {
 app.post('/api/user/register', ctrl.user.register, passport.authenticate('local', {
 	successRedirect: '/api/user/getme'
 }));
-app.get('/api/user/getall', ctrl.user.getallusers);
+app.get('/api/users', ctrl.user.getAllUsers);
 app.get('/api/user/getme', isAuthed, ctrl.user.me);
 app.put('/api/user/:_id', isAuthed, ctrl.user.update);
 

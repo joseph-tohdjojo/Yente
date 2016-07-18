@@ -26,6 +26,13 @@ angular.module('yente')
 				});
 		};
 
+		projectsService.getSomeProjectsByOwner = function(ownerId) {
+			return $http.get('/api/project/getsomeprojects/' + ownerId)
+				.then(function(response) {
+					return response.data
+				});
+		};
+
 		projectsService.storeImage = function (user, projectTitle, projectUrl, projectDescription, imageData, fileName) {
 			var imageExtension = imageData.split(';')[0].split('/');
 	    imageExtension = imageExtension[imageExtension.length - 1];

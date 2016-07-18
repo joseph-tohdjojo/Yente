@@ -1,5 +1,25 @@
 body {
 	ui-view {
+		> .under-review {
+			width: calc(100% - 14rem);
+			height: 4rem;
+			background-color: hsla(358, 67%, 64%, 1);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: fixed;
+			top: 0;
+			left: 14rem;
+			z-index: 200;
+			box-shadow: 0.1rem 0.1rem 16px 0px rgba(0,0,0,0.5);
+			.message {
+				h3 {
+					font-family: $helvetica-stack;
+					text-align: center;
+					color: hsla(0, 0%, 100%, 1);
+				}
+			}
+		}
 		> .project-browser {
 			width: 80%;
 			margin: 0 auto;
@@ -50,6 +70,136 @@ body {
 				height: 1.2rem;
 				background: #e0e0e0;
 				border-radius: 0 0 0.4rem 0.4rem;
+			}
+		}
+		.user-card {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			box-sizing: border-box;
+			.user-info {
+				width: 100%;
+				display: flex;
+				justify-content: flex-start;
+				box-sizing: border-box;
+				.user {
+					width: 50%;
+					display: flex;
+					justify-content: flex-start;
+					.avatar {
+						width: 40%;
+						min-width: 5rem;
+						max-width: 7rem;
+						margin-right: 5%;
+						border-radius: 50%;
+						box-sizing: border-box;
+						img {
+							width: 100%;
+							border-radius: 50%;
+						}
+					}
+					.info {
+						width: 60%;
+						min-width: 10rem;
+						max-width: 20rem;
+						float: left;
+						margin-right: 5%;
+						display: flex;
+						justify-content: flex-start;
+						flex-direction: column;
+						h3 {
+							font-family: $logo-stack;
+							letter-spacing: 0.08rem;
+							font-weight: lighter;
+							font-size: 1.5rem;
+							line-height: 1.8rem;
+							color: hsla(180, 6%, 50%, 1);
+						}
+						h4 {
+							font-family: $helvetica-stack;
+							font-weight: lighter;
+							font-size: 1rem;
+							color: hsla(180, 6%, 50%, 1);
+							margin-bottom: 1rem;
+						}
+						p {
+							font-family: $helvetica-stack;
+							font-weight: lighter;
+							font-size: 0.8rem;
+							line-height: 1rem;
+							color: hsla(180, 6%, 60%, 1);
+							margin-bottom: 0.5rem;
+							height: 5rem;
+							overflow: hidden;
+						  text-overflow: ellipsis;
+						}
+						.links {
+							width: 100%;
+							height: 2rem;
+							display: flex;
+							flex-direction: row;
+							.icon {
+								width: 2rem;
+								height: 2rem;
+								margin-right: 0.5rem;
+								background-color: hsla(180, 6%, 80%, 1);
+								border-radius: 15%;
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								cursor: pointer;
+								i {
+									color: #fff;
+								}
+							}
+							.icon:hover {
+								background: hsla(180, 6%, 70%, 1);
+							}
+							.icon:active {
+								background: hsla(180, 6%, 85%, 1);
+							}
+						}
+					}
+				}
+			}
+			.projects::-webkit-scrollbar {
+				display: none;
+			}
+			.projects {
+				width: 50%;
+				max-width: 100%;
+				// min-width: 0;
+				height: 100%;
+				overflow: hidden;
+				padding: 5px;
+				overflow-x: scroll;
+				display: flex;
+				align-items: center;
+				// flex-shrink: 1;
+				// flex-grow: 1;
+				.container {
+					width: auto;
+					display: flex;
+					flex-direction: row;
+					justify-content: flex-start;
+					flex-wrap: nowrap;
+					.project-container {
+						width: 16rem;
+						height: 10rem;
+						margin-right: 1rem;
+						border: 12px solid hsla(180, 6%, 95%, 1);
+						cursor: pointer;
+						display: inline-block;
+						box-shadow: 1px 1px 5px #888888;
+						overflow: hidden;
+						img {
+							width: 100%;
+							background-color: #333;
+							display: inline;
+						}
+					}
+				}
 			}
 		}
 	}
