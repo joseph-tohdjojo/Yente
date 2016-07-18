@@ -24,7 +24,6 @@ var isAdmin = function(req, res, next) {
 }
 
 var app = express();
-var port = 8080;
 
 mongoose.connect('mongodb://localhost/yente');
 
@@ -80,6 +79,6 @@ app.get('/api/project/updateproject/:id', ctrl.project.updateProject);
 app.get('/api/project/acceptproject/:id', isAdmin, ctrl.project.acceptProject);
 
 /* ===================== listen ===================== */
-app.listen(port, function() {
-	console.log('Listening on port', port);
+app.listen(config.port, function() {
+	console.log('Listening on port', config.port);
 });
