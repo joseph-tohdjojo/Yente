@@ -638,71 +638,6 @@ body ui-view .application {
     body ui-view .application .form .submit:active {
       background-color: #d8d9da; }
 
-body ui-view .profile-wrapper {
-  width: 100%;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row; }
-  body ui-view .profile-wrapper .left {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-        flex-direction: column;
-    -ms-flex-preferred-size: 12rem;
-        flex-basis: 12rem;
-    -ms-flex-positive: 1;
-        flex-grow: 1; }
-    body ui-view .profile-wrapper .left .avatar {
-      width: 50%;
-      min-width: 8rem;
-      margin: 0 auto;
-      margin-bottom: 3rem; }
-      body ui-view .profile-wrapper .left .avatar img {
-        width: 100%;
-        border-radius: 50%; }
-    body ui-view .profile-wrapper .left .bio p {
-      text-align: justify;
-      font-family: Helvetica, sans-serif;
-      font-weight: lighter;
-      font-size: 0.8rem;
-      line-height: 1rem;
-      color: #939f9f; }
-  body ui-view .profile-wrapper .right {
-    margin-left: 2rem;
-    padding-left: 2rem;
-    border-left: 1px solid #bdbfc1;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-positive: 3;
-        flex-grow: 3;
-    -ms-flex-direction: column;
-        flex-direction: column; }
-    body ui-view .profile-wrapper .right .name h2 {
-      font-family: "Teko", Helvetica, sans-serif;
-      font-size: 6rem;
-      color: #788787; }
-    body ui-view .profile-wrapper .right .location {
-      margin-bottom: 2rem; }
-      body ui-view .profile-wrapper .right .location h3 {
-        font-family: Helvetica, sans-serif;
-        font-size: 1rem;
-        font-weight: lighter;
-        color: #788787; }
-    body ui-view .profile-wrapper .right .project-wrapper {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap; }
-      body ui-view .profile-wrapper .right .project-wrapper .project-browser {
-        margin-right: 2rem;
-        margin-bottom: 2rem;
-        border: 12px solid #f1f3f3; }
-        body ui-view .profile-wrapper .right .project-wrapper .project-browser img {
-          max-width: 35rem; }
-
 body ui-view .about {
   width: 40%;
   margin: 0 auto 3rem; }
@@ -798,6 +733,71 @@ body ui-view .grid {
       text-align: right; }
   body ui-view .grid .project:hover p {
     color: #000; }
+
+body ui-view .profile-wrapper {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row; }
+  body ui-view .profile-wrapper .left {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-preferred-size: 12rem;
+        flex-basis: 12rem;
+    -ms-flex-positive: 1;
+        flex-grow: 1; }
+    body ui-view .profile-wrapper .left .avatar {
+      width: 50%;
+      min-width: 8rem;
+      margin: 0 auto;
+      margin-bottom: 3rem; }
+      body ui-view .profile-wrapper .left .avatar img {
+        width: 100%;
+        border-radius: 50%; }
+    body ui-view .profile-wrapper .left .bio p {
+      text-align: justify;
+      font-family: Helvetica, sans-serif;
+      font-weight: lighter;
+      font-size: 0.8rem;
+      line-height: 1rem;
+      color: #939f9f; }
+  body ui-view .profile-wrapper .right {
+    margin-left: 2rem;
+    padding-left: 2rem;
+    border-left: 1px solid #bdbfc1;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-positive: 3;
+        flex-grow: 3;
+    -ms-flex-direction: column;
+        flex-direction: column; }
+    body ui-view .profile-wrapper .right .name h2 {
+      font-family: "Teko", Helvetica, sans-serif;
+      font-size: 6rem;
+      color: #788787; }
+    body ui-view .profile-wrapper .right .location {
+      margin-bottom: 2rem; }
+      body ui-view .profile-wrapper .right .location h3 {
+        font-family: Helvetica, sans-serif;
+        font-size: 1rem;
+        font-weight: lighter;
+        color: #788787; }
+    body ui-view .profile-wrapper .right .project-wrapper {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap; }
+      body ui-view .profile-wrapper .right .project-wrapper .project-browser {
+        margin-right: 2rem;
+        margin-bottom: 2rem;
+        border: 12px solid #f1f3f3; }
+        body ui-view .profile-wrapper .right .project-wrapper .project-browser img {
+          max-width: 35rem; }
 
 body ui-view > .under-review {
   width: calc(100% - 14rem);
@@ -1121,4 +1121,4 @@ body ui-view .card {
     background-color: #bdbfc1;
     margin: 3rem 0; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=bundle.css.map */
