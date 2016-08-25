@@ -1,4 +1,4 @@
-angular.module('yente', ['ui.router', 'masonry'])
+angular.module('yente', ['ui.router', 'wu.masonry'])
 	.config(function($stateProvider, $urlRouterProvider) {
 
 		$urlRouterProvider.otherwise('/');
