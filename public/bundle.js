@@ -567,32 +567,6 @@ angular.module('yente').component('projectGrid', {
 	templateUrl: './components/projectgrid/projectgrid-tmpl.html',
 	controller: 'projectGridController'
 });
-angular.module('yente').directive('fileread', function (imagesService) {
-					return {
-										restrict: 'A',
-										scope: { projectPicture: '&' },
-										link: function (scope, elem, attrs) {
-															elem.bind("change", function (changeEvent) {
-																				var reader = new FileReader();
-																				reader.onload = function (loadEvent) {
-																									$('.preview').hide();
-																									$('.preview').attr('src', loadEvent.target.result);
-																									$('.preview').slideDown('fast');
-																									var fileread = loadEvent.target.result;
-																									var tempArray = elem[0].value.split('\\');
-																									var fileName = tempArray[tempArray.length - 1];
-																									var obj = {
-																														fileread: fileread,
-																														fileName: fileName
-																									};
-																									scope.projectPicture(obj);
-																				};
-
-																				reader.readAsDataURL(changeEvent.target.files[0]);
-															});
-										}
-					};
-});
 angular.module('yente').controller('SideNavController', function ($scope, $state, authService, usersService, $stateParams, projectsService) {
 	var sideNavCtrl = this;
 
@@ -668,6 +642,32 @@ angular.module('yente').component('sideNav', {
 	controller: 'SideNavController',
 	controllerAs: 'sideNavCtrl'
 });
+angular.module('yente').directive('fileread', function (imagesService) {
+					return {
+										restrict: 'A',
+										scope: { projectPicture: '&' },
+										link: function (scope, elem, attrs) {
+															elem.bind("change", function (changeEvent) {
+																				var reader = new FileReader();
+																				reader.onload = function (loadEvent) {
+																									$('.preview').hide();
+																									$('.preview').attr('src', loadEvent.target.result);
+																									$('.preview').slideDown('fast');
+																									var fileread = loadEvent.target.result;
+																									var tempArray = elem[0].value.split('\\');
+																									var fileName = tempArray[tempArray.length - 1];
+																									var obj = {
+																														fileread: fileread,
+																														fileName: fileName
+																									};
+																									scope.projectPicture(obj);
+																				};
+
+																				reader.readAsDataURL(changeEvent.target.files[0]);
+															});
+										}
+					};
+});
 angular.module('yente').controller('UserCardController', function ($scope) {});
 angular.module('yente').directive('userCard', function () {
 	return {
@@ -676,30 +676,6 @@ angular.module('yente').directive('userCard', function () {
 		scope: false,
 		controller: 'UserCardController',
 		controllerAs: 'userCardCtrl'
-	};
-});
-angular.module('yente').controller('ApplyController', function ($scope, $state, authService, getUserForApplication) {
-	var applyCtrl = this;
-
-	if (getUserForApplication) {
-		$state.go('home');
-	}
-
-	applyCtrl.register = function (username, password, firstName, lastName, email, city, state, bio) {
-		var user = {
-			firstName: firstName,
-			lastName: lastName,
-			bio: bio,
-			username: username,
-			password: password,
-			email: email,
-			city: city,
-			state: state.toUpperCase()
-		};
-		authService.registerUser(user).then(function (results) {
-			applyCtrl.user = results;
-			$state.go('home');
-		});
 	};
 });
 angular.module('yente').controller('AddProjectController', function ($scope, $state, projectsService, authService, usersService, getUserForAddProject, $timeout) {
@@ -723,6 +699,30 @@ angular.module('yente').controller('AddProjectController', function ($scope, $st
 		var user = vm.user;
 		projectsService.storeImage(user, projectTitle, projectUrl, projectDescription, picInfo.fileread, picInfo.fileName).then(function (result) {
 			$state.go('project', { id: result._id });
+		});
+	};
+});
+angular.module('yente').controller('ApplyController', function ($scope, $state, authService, getUserForApplication) {
+	var applyCtrl = this;
+
+	if (getUserForApplication) {
+		$state.go('home');
+	}
+
+	applyCtrl.register = function (username, password, firstName, lastName, email, city, state, bio) {
+		var user = {
+			firstName: firstName,
+			lastName: lastName,
+			bio: bio,
+			username: username,
+			password: password,
+			email: email,
+			city: city,
+			state: state.toUpperCase()
+		};
+		authService.registerUser(user).then(function (results) {
+			applyCtrl.user = results;
+			$state.go('home');
 		});
 	};
 });
