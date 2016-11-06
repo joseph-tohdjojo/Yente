@@ -14,8 +14,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('./models/user.model.js');
 var ctrl = require('./controllers.js');
 var config = require('./config.js');
-var githubClientId = config.github.clientId;
-var githubClientSecret = config.github.clientSecret;
 
 
 
@@ -149,6 +147,6 @@ app.get('/api/project/acceptproject/:id', isAdmin, ctrl.project.acceptProject);
   #LISTEN
 \*------------------------------------*/
 
-app.listen(config.portDev, function() {
-	console.log('Yente Express server listening on port', config.portDev);
+app.listen(config.port, function() {
+	console.log('Yente Express server listening on port', config.port);
 });
