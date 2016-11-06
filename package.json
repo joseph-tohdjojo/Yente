@@ -2,7 +2,7 @@
   "name": "yente",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",,
+  "main": "index.js",
   "scripts": {
     "start": "PORT=80 forever start server/server.js"
   },
