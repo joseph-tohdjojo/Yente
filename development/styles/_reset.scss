@@ -22,18 +22,24 @@ time, mark, audio, video {
     box-sizing: border-box;
 }
 
-html::selection, body::selection, div::selection, span::selection, applet::selection, object::selection, iframe::selection,
-h1::selection, h2::selection, h3::selection, h4::selection, h5::selection, h6::selection, p::selection, blockquote::selection, pre::selection,
-a::selection, abbr::selection, acronym::selection, address::selection, big::selection, cite::selection, code::selection,
-del::selection, dfn::selection, em::selection, img::selection, ins::selection, kbd::selection, q::selection, s::selection, samp::selection,
-small::selection, strike::selection, strong::selection, sub::selection, sup::selection, tt::selection, var::selection,
-b::selection, u::selection, i::selection, center::selection, input::selection,
-dl::selection, dt::selection, dd::selection, ol::selection, ul::selection, li::selection,
+html::selection, body::selection, div::selection, span::selection,
+applet::selection, object::selection, iframe::selection, h1::selection,
+h2::selection, h3::selection, h4::selection, h5::selection, h6::selection,
+p::selection, blockquote::selection, pre::selection, a::selection,
+abbr::selection, acronym::selection, address::selection, big::selection,
+cite::selection, code::selection, del::selection, dfn::selection, em::selection,
+img::selection, ins::selection, kbd::selection, q::selection, s::selection,
+samp::selection, small::selection, strike::selection, strong::selection,
+sub::selection, sup::selection, tt::selection, var::selection, b::selection,
+u::selection, i::selection, center::selection, input::selection, dl::selection,
+dt::selection, dd::selection, ol::selection, ul::selection, li::selection,
 fieldset::selection, form::selection, label::selection, legend::selection,
-table::selection, caption::selection, tbody::selection, tfoot::selection, thead::selection, tr::selection, th::selection, td::selection,
-article::selection, aside::selection, canvas::selection, details::selection, embed::selection,
-figure::selection, figcaption::selection, footer::selection, header::selection, hgroup::selection,
-menu::selection, nav::selection, output::selection, ruby::selection, section::selection, summary::selection,
+table::selection, caption::selection, tbody::selection, tfoot::selection,
+thead::selection, tr::selection, th::selection, td::selection,
+article::selection, aside::selection, canvas::selection, details::selection,
+embed::selection, figure::selection, figcaption::selection, footer::selection,
+header::selection, hgroup::selection, menu::selection, nav::selection,
+output::selection, ruby::selection, section::selection, summary::selection,
 time::selection, mark::selection, audio::selection, video::selection {
   background: #ffdc26; /* WebKit/Blink Browsers */
 }
